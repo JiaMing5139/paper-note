@@ -17,11 +17,12 @@
             <el-menu-item index="2-4-2">选项2</el-menu-item>
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
-          <el-input
+          <el-menu-item> <el-input>
             placeholder="请输入内容"
             prefix-icon="el-icon-search"
             v-model="input2">
-          </el-input>
+          </el-input></el-menu-item>
+
           <el-submenu index="2">
             <template slot="title">用户</template>
             <el-menu-item index="2-1">登陆</el-menu-item>
@@ -54,7 +55,19 @@
       color: #42b983;
     }
   }
-
+  .el-header {
+    width:100%;
+    height: auto;
+    position: absolute;
+    left:0;
+    right: 0;
+    top:0;
+    text-align: center;
+    line-height: 60px;
+  }
+  .el-input{
+    white-space: nowrap;
+  }
 
 }
 </style>

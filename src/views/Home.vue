@@ -19,16 +19,7 @@
 </template>
 
 <style>
-  .el-header {
-    width:100%;
-    height: auto;
-    position: absolute;
-    left:0;
-    right: 0;
-    top:0;
-    text-align: center;
-    line-height: 60px;
-  }
+
    .el-footer {
     background-color: #B3C0D1;
     color: #333;
