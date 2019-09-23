@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!--<router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/profile_page">profile_page</router-link> |
-      <router-link to="/sign_in">sign_in</router-link> |
-      <router-link to="/sign_up">sign_up</router-link> |-->
+
       <el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
           <el-menu-item index="1"><router-link to="/">Home</router-link></el-menu-item>
@@ -18,7 +14,7 @@
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
 
-          <el-menu-item >Search</el-menu-item >
+          <el-menu-item > <router-link to="/search_pagee">search_pagee</router-link></el-menu-item >
           <el-menu-item > <el-input>
             placeholder="请输入内容"
             prefix-icon="el-icon-search"
@@ -26,7 +22,7 @@
           </el-input></el-menu-item>
 
           <el-submenu index="4" id ="user">
-            <template slot="title">User</template>
+            <template slot="title"><router-link to="/user_center">user_center</router-link></template>
             <el-menu-item index="2-1"><router-link to="/Sign_up">Sign_up</router-link></el-menu-item>
             <el-menu-item index="2-2"><router-link to="/Sign_in">Sign_in</router-link></el-menu-item>
             <el-menu-item index="2-3"><router-link to="/admin">admin</router-link></el-menu-item>

@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Profile_page from './views/profile_page'
+import user_center from './views/user_center'
 import admin from './views/admin'
 import Sign_in from './views/Sign_in'
 import Sign_up from './views/Sign_up'
+import search_pagee from './views/search_pagee'
 
 Vue.use(Router)
 
@@ -24,11 +25,15 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    }, {
+      path: '/search_pagee',
+      name: 'search_pagee',
+      component: search_pagee
     },
     {
-      path: '/profile_page',
-      name: 'profile_page',
-      component: Profile_page
+      path: '/user_center',
+      name: 'user_center',
+      component: user_center
     },
     {
       path: '/admin',
