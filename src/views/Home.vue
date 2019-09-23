@@ -1,4 +1,5 @@
 <template>
+  <div id="app">
   <div class="home">
     <el-row >
       <el-col :span="4" id="left_nav">
@@ -66,25 +67,29 @@
         </el-menu>
       </el-col>
       <el-col :span="12" id = "main_view">
-        <h >paper ground</h>
+        <h style="margin-right: 700px">paper ground</h>
+        <div v-for="(item,index) in paperlist">
+          <el-row>
+            <el-col :span="24" id="paper_display">
+                <div class="grid-content bg-purple-light">
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h1>Tittle </h1></el-row>
+                  <el-row id="paper_abstract" style="line-height:20px;margin-right: 80px">Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
+                  <el-row id="paper_info" >
+                     <el-label>author : {{item.author}}  </el-label>
+                     <el-label>notes :  {{item.num_notes}}   </el-label>
+                  </el-row>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
 
-        <el-row>
-          <el-col :span="24" id="paper_display"> <div class="grid-content bg-purple-dark">paper 1</div></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24" id="paper_display"> <div class="grid-content bg-purple-light">paper 2</div></el-col>
-        </el-row>
-        <el-row></el-row>
-        <el-row>
-          <el-col :span="24" id="paper_display"> <div class="grid-content bg-purple-dark">paper 3</div></el-col>
-        </el-row>
       </el-col>
 
     </el-row>
 
 
   </div>
-
+  </div>
 </template>
 
 <style>
@@ -123,6 +128,15 @@
   }
 </style>
 <style>
+  #paper_info{
+    margin-right:600px;
+    line-height:30px;
+    color: #B3C0D1;
+
+  }
+  #paper_info.el_label{
+    margin-left:40px;
+  }
   #left_nav{
     margin-left:180px;
   }
@@ -163,13 +177,23 @@ export default {
   name: 'home',
   data() {
     return {
-      isCollapse: true
+      isCollapse: true,
+      paperlist:[
+        { author:"wang",
+          date:'1101',
+          num_notes:12,},
+        { author:"liyong",
+          date:'1103',
+          num_notes:15,}
+      ]
     };
+
+  },
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
   },
 
-  components: {
-    HelloWorld
-  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
