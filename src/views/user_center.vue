@@ -2,7 +2,7 @@
   <div class='search_page'>
     <el-container>
       <el-main>
-<!--        <div style="margin: 20px 0;">-->
+        <div style="margin: 0px 0;">
         <el-row>
           <el-col span="4" offset="2">
             <div class="demo-type">
@@ -30,9 +30,9 @@
             <el-button @click="myrecommendation">My6585</el-button>
           </el-col>
         </el-row>
-        <el-row>
-          <div style="margin: 20px 0;"></div>
-        </el-row>
+<!--        <el-row>-->
+<!--          <div style="margin: 20px 0;"></div>-->
+<!--        </el-row>-->
         <el-row>
           <el-col :span="2" :offset="0">
             <el-button @click="ControllableParapharseGenerationwithaSyntacticExemplar">Controllable Parapharse Generation with a Syntactic Exemplar</el-button>
@@ -41,9 +41,9 @@
             <el-button @click="recentlyread">Recently read</el-button>
           </el-col>
         </el-row>
-        <el-row>
-          <div style="margin: 20px 0;"></div>
-        </el-row>
+<!--        <el-row>-->
+<!--          <div style="margin: 20px 0;"></div>-->
+<!--        </el-row>-->
         <el-row>
           <el-col :span="2" :offset="0">
             <el-button @click="DocREDALarge-ScaleDocument-LevelRelationExtractionDataset">DocRED:A Large-Scale Document-Level Relation Extraction Dataset</el-button>
@@ -52,9 +52,9 @@
             <el-button @click="myquestions">My questions</el-button>
           </el-col>
         </el-row>
-        <el-row>
-          <div style="margin: 20px 0;"></div>
-        </el-row>
+<!--        <el-row>-->
+<!--          <div style="margin: 20px 0;"></div>-->
+<!--        </el-row>-->
         <el-row>
           <el-col :span="2" :offset="0">
             <el-button @click="TowardsComplexText-to-SQLinCross-DomainDatabasewithintermediate">Towards Complex Text-to-SQL in Cross-Domain Database with intermediate</el-button>
@@ -63,7 +63,7 @@
             <el-button @click="mynotes">My notes</el-button>
           </el-col>
         </el-row>
-<!--        </div>-->
+        </div>
       </el-main>
     </el-container>
   </div>
