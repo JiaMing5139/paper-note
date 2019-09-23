@@ -8,7 +8,7 @@
       <router-link to="/sign_up">sign_up</router-link> |-->
       <el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="1">Home</el-menu-item>
+          <el-menu-item index="1"><router-link to="/">Home</router-link></el-menu-item>
 
           <el-menu-item index="2">Discover</el-menu-item>
           <el-submenu index="2-4">
@@ -27,8 +27,9 @@
 
           <el-submenu index="4" id ="user">
             <template slot="title">User</template>
-            <el-menu-item index="2-1">Sign up</el-menu-item>
-            <el-menu-item index="2-2">Sign in</el-menu-item>
+            <el-menu-item index="2-1"><router-link to="/Sign_up">Sign_up</router-link></el-menu-item>
+            <el-menu-item index="2-2"><router-link to="/Sign_in">Sign_in</router-link></el-menu-item>
+            <el-menu-item index="2-3"><router-link to="/admin">admin</router-link></el-menu-item>
 
           </el-submenu>
 

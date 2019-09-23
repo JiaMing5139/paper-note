@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-row >
-      <el-col :span="4">
+      <el-col :span="4" id="left_nav">
         <h5>catlog</h5>
         <el-menu
           default-active="2"
@@ -66,7 +66,8 @@
         </el-menu>
       </el-col>
       <el-col :span="12" id = "main_view">
-        <h>paper ground</h>
+        <h >paper ground</h>
+
         <el-row>
           <el-col :span="24" id="paper_display"> <div class="grid-content bg-purple-dark">paper 1</div></el-col>
         </el-row>
@@ -122,8 +123,16 @@
   }
 </style>
 <style>
+  #left_nav{
+    margin-left:180px;
+  }
+  #main_view{
+    margin-left:150px;
+
+  }
   #paper_display{
-    line-height: 150px;
+    line-height: 200px;
+    margin-top:20px;
   }
   .el-col {
     border-radius: 4px;
