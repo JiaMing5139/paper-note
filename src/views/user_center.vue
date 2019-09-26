@@ -3,21 +3,21 @@
 <!--    <el-container>-->
 <!--      <el-main>-->
 <!--        <div style="margin: 0px 0;">-->
-<!--        <el-row >-->
-<!--          <el-col span="4" offset="2">-->
-<!--            <div class="demo-type">-->
-<!--              <div>-->
-<!--                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <el-col >-->
-<!--               Nick  name-->
-<!--            </el-col>-->
-<!--          </el-col>-->
-<!--          <el-col :span="4" :offset="18">-->
-<!--            <el-button @click="Edit">Edit</el-button>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
+        <el-row >
+          <el-col span="4" offset="2">
+            <div class="demo-type">
+              <div>
+                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+              </div>
+            </div>
+            <el-col >
+               Nick  name
+            </el-col>
+          </el-col>
+          <el-col :span="4" :offset="18">
+            <el-button @click="Edit">Edit</el-button>
+          </el-col>
+        </el-row>
 <!--          <el-divider></el-divider>-->
 <!--        <el-row>-->
 <!--          <el-col :span="2" :offset="0">-->
@@ -89,7 +89,7 @@
     <div class="home">
       <el-row >
         <el-col>
-          <el-col span="4" offset="20">
+          <el-col span="4" offset="16">
             <div class="demo-type">
               <div>
                 <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
@@ -98,6 +98,11 @@
             <el-col >
               Nick  name
             </el-col>
+          </el-col>
+        </el-col>
+        <el-col>
+          <el-col :span="4" :offset="18">
+            <el-button @click="Edit">Edit</el-button>
           </el-col>
         </el-col>
         <el-col :span="4" id="left_nav">
