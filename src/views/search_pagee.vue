@@ -84,6 +84,9 @@
   <div id="app">
     <div class="home">
       <el-row >
+        <el-row offset='3' style="font-size: 40px ">
+          <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
+        </el-row>
         <el-col :span="4" id="left_nav">
           <h5>catlog</h5>
           <el-menu
