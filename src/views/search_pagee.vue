@@ -94,7 +94,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>computer</span>
+                <span>computer science</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -112,7 +112,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>medicine</span>
+                <span>bioengineering</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -130,7 +130,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>engineer</span>
+                <span>medical science</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -148,23 +148,6 @@
 
           </el-menu>
         </el-col>
-        <el-row>
-          <el-col span="4" offset="1">
-            <el-row style="font-size: 40px ">
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-row>
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-row>
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-row>
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-          </el-col>
-        </el-row>
 
 <!--        <el-col :span="12" id = "main_view">-->
 <!--          <h style="margin-right: 700px">paper ground</h>-->
@@ -184,6 +167,25 @@
 <!--          </div>-->
 <!--        </el-col>-->
 
+      </el-row>
+      <el-row>
+        <el-row>
+          <el-col span="4" offset="10">
+            <el-row style="font-size: 40px ">
+              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
+            </el-row>
+            <el-row>
+              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
+            </el-row>
+            <el-row>
+              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
+            </el-row>
+            <el-row>
+              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
+            </el-row>
+            <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
+          </el-col>
+        </el-row>
       </el-row>
 
     </div>
