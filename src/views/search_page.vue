@@ -80,8 +80,8 @@
                                                                                     -webkit-box-orient: vertical;">
                     Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
                   <el-row id="paper_info" >
-                    <el-label>author : {{item.author}}  </el-label>
-                    <el-label>notes :  {{item.num_notes}}   </el-label>
+                    <li>author : {{item.author}}  </li>
+                    <li>notes :  {{item.num_notes}}   </li>
                   </el-row>
                 </div>
               </el-col>

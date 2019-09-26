@@ -9,61 +9,24 @@
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose">
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>computer</span>
-            </template>
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-submenu index="1">
+          <el-submenu index="computer">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>computer</span>
+          </template>
+          <el-menu-item  @open="handleOpen" index="1-1">AI</el-menu-item>
+          <el-menu-item  @open="handleOpen" index="1-2">Network</el-menu-item>
+          <el-menu-item  @open="handleOpen" index="1-3">embbeding system</el-menu-item>
+        </el-submenu>
+          <el-submenu index="medicine">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>medicine</span>
             </template>
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>engineer</span>
-            </template>
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
 
+            <el-menu-item index="2-1">cell</el-menu-item>
+            <el-menu-item index="2-2">cancer</el-menu-item>
+          </el-submenu>
         </el-menu>
       </el-col>
       <el-col :span="12" id = "main_view">
@@ -80,8 +43,8 @@
                                                                                     -webkit-box-orient: vertical;">
                     Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
                   <el-row id="paper_info" >
-                     <el-label>author : {{item.author}}  </el-label>
-                     <el-label>notes :  {{item.num_notes}}   </el-label>
+                     <span>author : {{item.author}}  </span>
+                     <span>notes :  {{item.num_notes}}   </span>
                   </el-row>
               </div>
             </el-col>
@@ -174,45 +137,36 @@
   }
 </style>
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
   data () {
     return {
       paperlist:
-        [{"computer":[
-          { title:"computer science",
-            abstract:"",
-            content:"",
+        [{ 'AI': [
+          { title: 'computer science',
+            abstract: '',
+            content: '',
             author: 'wang',
             date: '1101',
-            num_notes: 12 },
-            { title:"computer science",
-              abstract:"",
-              content:"",
-              author: 'wang',
-              date: '1101',
-              num_notes: 12 }]
+            num_notes: 12 }]
         },
 
-          {"medince":[{ title:"computer science",
-              abstract:"",
-              content:"",
-              author: 'wang',
-              date: '1101',
-              num_notes: 12 }]},
+        { 'Network': [{ title: 'computer science',
+          abstract: '',
+          content: '',
+          author: 'wang',
+          date: '1101',
+          num_notes: 12 }] },
 
-          {"enineer":[{ title:"computer science",
-              abstract:"",
-              content:"",
-              author: 'wang',
-              date: '1101',
-              num_notes: 12 }]}
-        ]
-
-
+        { '': [{ title: 'computer science',
+          abstract: '',
+          content: '',
+          author: 'wang',
+          date: '1101',
+          num_notes: 12 }] }
+        ],
+      showList:[]
 
     }
   },
