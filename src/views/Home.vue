@@ -67,13 +67,18 @@
         </el-menu>
       </el-col>
       <el-col :span="12" id = "main_view">
-        <h style="margin-right: 700px">paper ground</h>
+        <h style="margin-right: 700px"><h1>Weekly paper ground</h1></h>
         <div v-for="(item,index) in paperlist">
           <el-row>
             <el-col :span="24" id="paper_display">
                 <div class="grid-content bg-purple-light">
-                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h1>Tittle </h1></el-row>
-                  <el-row id="paper_abstract" style="line-height:20px;margin-right: 80px">Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>Tittle </h3></el-row>
+                  <el-row id="paper_abstract" style="line-height:20px;margin-right: 80px;    overflow: hidden;
+                                                                                    -webkit-line-clamp: 4;
+                                                                                    text-overflow: ellipsis;
+                                                                                    display: -webkit-box;
+                                                                                    -webkit-box-orient: vertical;">
+                    Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
                   <el-row id="paper_info" >
                      <el-label>author : {{item.author}}  </el-label>
                      <el-label>notes :  {{item.num_notes}}   </el-label>
@@ -86,7 +91,6 @@
       </el-col>
 
     </el-row>
-
 
   </div>
   </div>
@@ -175,19 +179,42 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
-  data() {
+  data () {
     return {
-      isCollapse: true,
-      paperlist:[
-        { author:"wang",
-          date:'1101',
-          num_notes:12,},
-        { author:"liyong",
-          date:'1103',
-          num_notes:15,}
-      ]
-    };
+      paperlist:
+        [{"computer":[
+          { title:"computer science",
+            abstract:"",
+            content:"",
+            author: 'wang',
+            date: '1101',
+            num_notes: 12 },
+            { title:"computer science",
+              abstract:"",
+              content:"",
+              author: 'wang',
+              date: '1101',
+              num_notes: 12 }]
+        },
 
+          {"medince":[{ title:"computer science",
+              abstract:"",
+              content:"",
+              author: 'wang',
+              date: '1101',
+              num_notes: 12 }]},
+
+          {"enineer":[{ title:"computer science",
+              abstract:"",
+              content:"",
+              author: 'wang',
+              date: '1101',
+              num_notes: 12 }]}
+        ]
+
+
+
+    }
   },
   created: function () {
     // `this` 指向 vm 实例
@@ -195,11 +222,11 @@ export default {
   },
 
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }

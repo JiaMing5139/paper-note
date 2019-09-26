@@ -14,7 +14,7 @@
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
 
-          <el-menu-item > <router-link to="/search_pagee">search_pagee</router-link></el-menu-item >
+          <el-menu-item > <router-link to="/search_page">search_pagee</router-link></el-menu-item >
           <el-menu-item > <el-input>
             placeholder="请输入内容"
             prefix-icon="el-icon-search"
@@ -56,7 +56,7 @@
   }
   .el-header {
     width:80%;
-    height:200px;
+    height:100px;
     position: absolute;
     left:200px;
     right: 0;
