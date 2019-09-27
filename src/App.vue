@@ -87,7 +87,10 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      activeIndex: '1',
+      activeIndex2: '1'
+    }
   }
 }
 </script>

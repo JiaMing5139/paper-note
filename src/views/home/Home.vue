@@ -35,7 +35,7 @@
           <el-row>
             <el-col :span="24" id="paper_display">
                 <div class="grid-content bg-purple-light">
-                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>Tittle </h3></el-row>
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap" ><h3>{{item.title}} </h3></el-row>
                     <el-row id="paper_abstract" >
                       <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
                                                                                           -webkit-line-clamp: 4;
@@ -47,6 +47,14 @@
                     </el-row>
                   <el-row id="paper_info" >
                      <span>author : {{item.author}} notes :  {{item.num_notes}}</span>
+                    <el-rate
+                      v-model="value"
+                      disabled
+                      show-score
+                      text-color="#ff9900"
+                      score-template="{value}" style="align-items: center">
+                    </el-rate>
+
                   </el-row>
               </div>
             </el-col>
@@ -145,22 +153,23 @@ export default {
   name: 'home',
   data () {
     return {
+      value:4.4,
       paperlist:
     [{ title: 'computer science',
       abstract: '',
-      content: 'hello world',
+      content: 'This is a list of 100 important natural language processing (NLP) papers that serious students and researchers working in the field should probably know about and read. This list is compiled by Masato Hagiwara. I welcome any feedback on this list.',
       author: 'wang',
       date: '1101',
       num_notes: 12 },
       { title: 'cell',
         abstract: '',
-        content: '',
+        content: 'This list is originally based on the answers for a Quora question I posted years ago: What are the most important research papers which all NLP studnets should definitely read?. I thank all the people who contributed to the original post.',
         author: 'wang',
         date: '1101',
         num_notes: 12 },
       { title: 'cancer',
         abstract: '',
-        content: '',
+        content: 'This list is far from complete or objective, and is evolving, as important papers are being published year after year. Please let me know via pull requests and issues if anything is missing.',
         author: 'wang',
         date: '1101',
         num_notes: 12 }

@@ -35,7 +35,7 @@
             <el-row>
               <el-col :span="24" id="paper_display">
                 <div class="grid-content bg-purple-light">
-                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>Tittle </h3></el-row>
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>{{catlog}} </h3></el-row>
                   <el-row id="paper_abstract" >
                     <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
                                                                                           -webkit-line-clamp: 4;
@@ -48,6 +48,16 @@
                   <el-row id="paper_info" >
                     <span>author : {{item.author}}  </span>
                     <span>notes :  {{item.num_notes}}   </span>
+                    <span>
+                        <el-rate
+                        v-model="value"
+                        disabled
+                        show-score
+                        text-color="#ff9900"
+                        score-template="{value}" >
+                      </el-rate>
+                    </span>
+
                   </el-row>
                 </div>
               </el-col>
@@ -149,11 +159,59 @@ export default {
   mounted () {
     // GET
     // RECEIVE DATA
+    console.log("mounted():"+this.props.catlog)
     if (this.catlog === 'AI') {
+      paperlist:
+        [{ title: 'computer science',
+          abstract: '',
+          content: 'hello world',
+          author: 'wang',
+          date: '1101',
+          num_notes: 12 },
+          { title: 'cell',
+            abstract: '',
+            content: '',
+            author: 'wang',
+            date: '1101',
+            num_notes: 12 },
+          { title: 'cancer',
+            abstract: '',
+            content: '',
+            author: 'wang',
+            date: '1101',
+            num_notes: 12 }
+        ]
 
     } else if (this.catlog === 'embedding_system') {
+      paperlist:
+        [{ title: 'embedding_system',
+          abstract: '',
+          content: 'hello world',
+          author: 'wang',
+          date: '1101',
+          num_notes: 12 },
+          { title: 'embedding_system',
+            abstract: '',
+            content: '',
+            author: 'wang',
+            date: '1101',
+            num_notes: 12 },
+        ]
       console.log('catlog:' + this.catlog)
     } else if (this.catlog === 'network') {
+      [{ title: 'network',
+        abstract: '',
+        content: 'hello world',
+        author: 'wang',
+        date: '1101',
+        num_notes: 12 },
+        { title: 'network',
+          abstract: '',
+          content: '',
+          author: 'wang',
+          date: '1101',
+          num_notes: 12 },
+      ]
       console.log('catlog:' + this.catlog)
     } else if (this.catlog === 'cell') {
       console.log('catlog:' + this.catlog)
@@ -164,6 +222,7 @@ export default {
 
   data () {
     return {
+      value:4.0,
       paperlist:
           [{ title: 'computer science',
             abstract: '',
