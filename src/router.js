@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+
+import Home from './views/home/Home.vue'
+
+
+import catlog_page from './views/home/catlog_page'
+
+
 import user_center from './views/user_center'
 import admin from './views/admin'
 import Sign_in from './views/Sign_in'
 import Sign_up from './views/Sign_up'
-import search_pagee from './views/search_pagee'
 import search_page from './views/search_page'
 
 Vue.use(Router)
@@ -16,7 +21,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home
     },
     {
@@ -50,6 +55,13 @@ export default new Router({
       path: '/Sign_up',
       name: 'Sign_up',
       component: Sign_up
+    },
+
+    {
+      path: '/catlog_page/:catlog',
+      name: 'catlog_page',
+      component: catlog_page,
+      props: true
     }
 
   ]

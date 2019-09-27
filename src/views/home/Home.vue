@@ -5,46 +5,48 @@
       <el-col :span="4" id="left_nav">
         <h5>catlog</h5>
         <el-menu
-          default-active="2"
+          default-active="computer"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose">
+          @click="handleOpen"
+          @close="handleClose"
+          router>
           <el-submenu index="computer">
           <template slot="title">
             <i class="el-icon-location"></i>
             <span>computer</span>
           </template>
-          <el-menu-item  @open="handleOpen" index="1-1">AI</el-menu-item>
-          <el-menu-item  @open="handleOpen" index="1-2">Network</el-menu-item>
-          <el-menu-item  @open="handleOpen" index="1-3">embbeding system</el-menu-item>
+          <el-menu-item     index="/catlog_page/AI" >AI</el-menu-item>
+            <el-menu-item   index="/catlog_page/network" >network</el-menu-item>
+            <el-menu-item   index="/catlog_page/embedding system" >embedding system</el-menu-item>
         </el-submenu>
           <el-submenu index="medicine">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>medicine</span>
             </template>
-
-            <el-menu-item index="2-1">cell</el-menu-item>
-            <el-menu-item index="2-2">cancer</el-menu-item>
+            <el-menu-item   index="/catlog_page/cell" >cell</el-menu-item>
+            <el-menu-item   index="/catlog_page/cancer" >cancer</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>
       <el-col :span="12" id = "main_view">
-        <h style="margin-right: 700px"><h1>Weekly paper ground</h1></h>
+       <h1>Weekly paper ground</h1>
         <div v-for="(item,index) in paperlist">
           <el-row>
             <el-col :span="24" id="paper_display">
                 <div class="grid-content bg-purple-light">
                   <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>Tittle </h3></el-row>
-                  <el-row id="paper_abstract" style="line-height:20px;margin-right: 80px;    overflow: hidden;
-                                                                                    -webkit-line-clamp: 4;
-                                                                                    text-overflow: ellipsis;
-                                                                                    display: -webkit-box;
-                                                                                    -webkit-box-orient: vertical;">
-                    Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
+                    <el-row id="paper_abstract" >
+                      <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
+                                                                                          -webkit-line-clamp: 4;
+                                                                                          text-overflow: ellipsis;
+                                                                                          display: -webkit-box;
+                                                                                          -webkit-box-orient: vertical;">
+                        <p style="margin-left: 30px">{{item.content}}</p>
+                      </div>
+                    </el-row>
                   <el-row id="paper_info" >
-                     <span>author : {{item.author}}  </span>
-                     <span>notes :  {{item.num_notes}}   </span>
+                     <span>author : {{item.author}} notes :  {{item.num_notes}}</span>
                   </el-row>
               </div>
             </el-col>
@@ -96,9 +98,10 @@
 </style>
 <style>
   #paper_info{
-    margin-right:600px;
+    margin-right:400px;
     line-height:30px;
     color: #B3C0D1;
+    white-space: nowrap;
 
   }
   #paper_info.el_label{
@@ -143,31 +146,25 @@ export default {
   data () {
     return {
       paperlist:
-        [{ 'AI': [
-          { title: 'computer science',
-            abstract: '',
-            content: '',
-            author: 'wang',
-            date: '1101',
-            num_notes: 12 }]
-        },
-
-        { 'Network': [{ title: 'computer science',
-          abstract: '',
-          content: '',
-          author: 'wang',
-          date: '1101',
-          num_notes: 12 }] },
-
-        { '': [{ title: 'computer science',
-          abstract: '',
-          content: '',
-          author: 'wang',
-          date: '1101',
-          num_notes: 12 }] }
-        ],
-      showList:[]
-
+    [{ title: 'computer science',
+      abstract: '',
+      content: 'hello world',
+      author: 'wang',
+      date: '1101',
+      num_notes: 12 },
+      { title: 'cell',
+        abstract: '',
+        content: '',
+        author: 'wang',
+        date: '1101',
+        num_notes: 12 },
+      { title: 'cancer',
+        abstract: '',
+        content: '',
+        author: 'wang',
+        date: '1101',
+        num_notes: 12 }
+    ]
     }
   },
   created: function () {
@@ -177,6 +174,9 @@ export default {
 
   methods: {
     handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleSelect (key, keyPath) {
       console.log(key, keyPath)
     },
     handleClose (key, keyPath) {

@@ -77,3 +77,17 @@
 
 }
 </style>
+<script>
+
+export default {
+  name: 'home',
+  methods: {
+    handleSelect () {
+
+    }
+  },
+  data () {
+    return {}
+  }
+}
+</script>
