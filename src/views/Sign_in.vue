@@ -17,7 +17,8 @@
 
     <el-row :gutter="20">
       <el-col :span="6" :offset="9">
-        <el-button @click="jump">Sign in</el-button>
+        <el-button @click="jump">Login</el-button>
+        <el-button>Sign up</el-button>
         <el-button>Forget Password ?</el-button>
 
         <!--        <button @click="jump">Button-跳转到购物车页面</button>-->
@@ -43,7 +44,7 @@ export default {
 
   methods: {
     jump () {
-      if (this.form.username === 'asdasd' && this.form.password === 'asdasd') {
+      if (this.form.username === 'abc' && this.form.password === 'abc') {
         this.$router.push({ path: '/user_center' })
         this.$message.success('success')
       } else {
