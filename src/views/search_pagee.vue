@@ -34,7 +34,7 @@
 <!--            </el-col>-->
 <!--          </el-row>-->
 <!--&lt;!&ndash;          <el-col :span="10" :offset="8" style="font-size: 40px">&ndash;&gt;-->
-            <el-button @click="searchresult">search result</el-button>
+<!--            <el-button @click="searchresult">search result</el-button>-->
 <!--&lt;!&ndash;&lt;!&ndash;            <el-button type="text">search result</el-button>&ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;          </el-col>&ndash;&gt;-->
 <!--        </el-row>-->

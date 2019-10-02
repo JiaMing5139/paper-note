@@ -3,21 +3,21 @@
 <!--    <el-container>-->
 <!--      <el-main>-->
 <!--        <div style="margin: 0px 0;">-->
-        <el-row >
-          <el-col span="4" offset="2">
-            <div class="demo-type">
-              <div>
-                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-              </div>
-            </div>
-            <el-col >
-               Nick  name
-            </el-col>
-          </el-col>
-          <el-col :span="4" :offset="18">
-            <el-button @click="Edit">Edit</el-button>
-          </el-col>
-        </el-row>
+<!--        <el-row >-->
+<!--          <el-col span="4" offset="2">-->
+<!--            <div class="demo-type">-->
+<!--              <div>-->
+<!--                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <el-col >-->
+<!--               Nick  name-->
+<!--            </el-col>-->
+<!--          </el-col>-->
+<!--          <el-col :span="4" :offset="18">-->
+<!--            <el-button @click="Edit">Edit</el-button>-->
+<!--          </el-col>-->
+<!--        </el-row>-->
 <!--          <el-divider></el-divider>-->
 <!--        <el-row>-->
 <!--          <el-col :span="2" :offset="0">-->
@@ -87,25 +87,8 @@
 <template>
   <div id="app">
     <div class="home">
-      <el-row >
-        <el-col>
-          <el-col span="4" offset="16">
-            <div class="demo-type">
-              <div>
-                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-              </div>
-            </div>
-            <el-col >
-              Nick  name
-            </el-col>
-          </el-col>
-        </el-col>
-        <el-col>
-          <el-col :span="4" :offset="18">
-            <el-button @click="Edit">Edit</el-button>
-          </el-col>
-        </el-col>
-        <el-col :span="4" id="left_nav">
+      <el-row>
+        <el-col :span="4" id="left_nav" style="margin-top:-120px">
           <h5>functions</h5>
           <el-menu
             default-active="2"
@@ -115,7 +98,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>My recommendation</span>
+                <span>My Recommendation</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -133,7 +116,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>My followers883</span>
+                <span>My Followers883</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -151,8 +134,8 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location" span="2"></i>
-                <span>My questions</span>
-<!--                <span :title="node.label">Controllable Parapharse Generation with a Syntactic Exemplar</span>-->
+                <span>My Questions</span>
+                <!--                <span :title="node.label">Controllable Parapharse Generation with a Syntactic Exemplar</span>-->
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -170,7 +153,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>Recently read</span>
+                <span>Recently Read</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -188,7 +171,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>My notes</span>
+                <span>My Notes</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -206,7 +189,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>123123441_star</span>
+                <span>123123441_Star</span>
               </template>
               <el-menu-item-group>
                 <template slot="title">分组一</template>
@@ -222,28 +205,67 @@
               </el-submenu>
             </el-submenu>
           </el-menu>
+
         </el-col>
-<!--        <el-col :span="12" id = "main_view">-->
-<!--          <h style="margin-right: 700px">paper ground</h>-->
-<!--          <div v-for="(item,index) in paperlist">-->
-<!--            <el-row>-->
-<!--              <el-col :span="24" id="paper_display">-->
-<!--                <div class="grid-content bg-purple-light">-->
-<!--                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h1>Tittle </h1></el-row>-->
-<!--                  <el-row id="paper_abstract" style="line-height:20px;margin-right: 80px">Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>-->
-<!--                  <el-row id="paper_info" >-->
-<!--                    <el-label>author : {{item.author}}  </el-label>-->
-<!--                    <el-label>notes :  {{item.num_notes}}   </el-label>-->
-<!--                  </el-row>-->
-<!--                </div>-->
-<!--              </el-col>-->
-<!--            </el-row>-->
-<!--          </div>-->
 
-<!--        </el-col>-->
+        <el-col span="6" offset="6" style="margin-top:-120px">
+          <el-form ref="form" :model="form" label-width="80px">
+            <div>
+              <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+            </div>
+            <el-form-item label="Nickname">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="Sex" >
+              <el-radio-group v-model="form.type" style="width: 100%">
+                <el-radio-button label="Male" value="Male"></el-radio-button>
+                <el-radio-button label="Female" value="Female"></el-radio-button>
+                <!--                <el-radio-button label="Conceal" value="Conceal"></el-radio-button>-->
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="Location">
+              <el-select v-model="form.region" placeholder="请选择活动区域">
+                <el-option label="Texas" value="shanghai"></el-option>
+                <el-option label="Beijing" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="Birthday">
+              <el-col :span="11">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+              </el-col>
+              <el-col class="line" :span="2">-</el-col>
+              <el-col :span="11">
+                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="Recommendation">
+              <el-switch v-model="form.delivery"></el-switch>
+            </el-form-item>
 
+            <el-form-item label="Subject">
+              <el-checkbox-group v-model="form.type">
+                <el-checkbox label="SE" name="type"></el-checkbox>
+                <el-checkbox label="AI" name="type"></el-checkbox>
+                <el-checkbox label="Medical" name="type"></el-checkbox>
+                <el-checkbox label="Electrical engineering" name="type"></el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>
+            <!--            <el-form-item label="特殊资源">-->
+            <!--              <el-radio-group v-model="form.resource">-->
+            <!--                <el-radio label="线上品牌商赞助"></el-radio>-->
+            <!--                <el-radio label="线下场地免费"></el-radio>-->
+            <!--              </el-radio-group>-->
+            <!--            </el-form-item>-->
+            <el-form-item label="Job">
+              <el-input type="textarea" v-model="form.desc"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">create</el-button>
+              <el-button>cancel</el-button>
+            </el-form-item>
+          </el-form>
+        </el-col>
       </el-row>
-
     </div>
   </div>
 </template>
@@ -346,36 +368,50 @@
   }
 </style>
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+    // @ is an alias to /src
+    // import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'home',
-  data () {
-    return {
-      isCollapse: true,
-      paperlist: [
-        { author: 'wang',
-          date: '1101',
-          num_notes: 12 },
-        { author: 'liyong',
-          date: '1103',
-          num_notes: 15 }
-      ]
-    }
-  },
-  created: function () {
-    // `this` 指向 vm 实例
-    console.log('a is: ' + this.a)
-  },
+    export default {
+        name: 'home',
+        data () {
+            return {
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+        // data () {
+        //   return {
+        //     isCollapse: true,
+        //     paperlist: [
+        //       { author: 'wang',
+        //         date: '1101',
+        //         num_notes: 12 },
+        //       { author: 'liyong',
+        //         date: '1103',
+        //         num_notes: 15 }
+        //     ]
+        //   }
+        // },
+        created: function () {
+            // `this` 指向 vm 实例
+            console.log('a is: ' + this.a)
+        },
 
-  methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+        methods: {
+            handleOpen (key, keyPath) {
+                console.log(key, keyPath)
+            },
+            handleClose (key, keyPath) {
+                console.log(key, keyPath)
+            }
+        }
     }
-  }
-}
 </script>
