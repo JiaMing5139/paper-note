@@ -1,89 +1,3 @@
-<!--<template>-->
-<!--  <div class='search_page'>-->
-<!--    <el-container>-->
-<!--      <el-main>-->
-<!--        <div style="margin: 0px 0;">-->
-<!--        <el-row >-->
-<!--          <el-col span="4" offset="2">-->
-<!--            <div class="demo-type">-->
-<!--              <div>-->
-<!--                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <el-col >-->
-<!--               Nick  name-->
-<!--            </el-col>-->
-<!--          </el-col>-->
-<!--          <el-col :span="4" :offset="18">-->
-<!--            <el-button @click="Edit">Edit</el-button>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-<!--          <el-divider></el-divider>-->
-<!--        <el-row>-->
-<!--          <el-col :span="2" :offset="0">-->
-<!--            <el-button @click="myrecommendation">My recommendation</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="2" :offset="12">-->
-<!--            <el-button @click="myrecommendation">123123441</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="1" :offset="1">-->
-<!--            <el-button @click="myrecommendation">My6585</el-button>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-<!--&lt;!&ndash;        <el-row>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div style="margin: 20px 0;"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </el-row>&ndash;&gt;-->
-<!--        <el-row>-->
-<!--          <el-col :span="2" :offset="0">-->
-<!--            <el-button @click="ControllableParapharseGenerationwithaSyntacticExemplar">Controllable Parapharse Generation with a Syntactic Exemplar</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="2" :offset="12">-->
-<!--            <el-button @click="recentlyread">Recently read</el-button>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-<!--&lt;!&ndash;        <el-row>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div style="margin: 20px 0;"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </el-row>&ndash;&gt;-->
-<!--        <el-row>-->
-<!--          <el-col :span="2" :offset="0">-->
-<!--            <el-button @click="DocREDALarge-ScaleDocument-LevelRelationExtractionDataset">DocRED:A Large-Scale Document-Level Relation Extraction Dataset</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="2" :offset="12">-->
-<!--            <el-button @click="myquestions">My questions</el-button>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-<!--&lt;!&ndash;        <el-row>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div style="margin: 20px 0;"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </el-row>&ndash;&gt;-->
-<!--        <el-row>-->
-<!--          <el-col :span="2" :offset="0">-->
-<!--            <el-button @click="TowardsComplexText-to-SQLinCross-DomainDatabasewithintermediate">Towards Complex Text-to-SQL in Cross-Domain Database with intermediate</el-button>-->
-<!--          </el-col>-->
-<!--          <el-col :span="2" :offset="12">-->
-<!--            <el-button @click="mynotes">My notes</el-button>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-<!--        </div>-->
-<!--      </el-main>-->
-<!--    </el-container>-->
-<!--  </div>-->
-<!--</template>-->
-
-<!--<script>-->
-<!--export default {-->
-<!--  methods: {-->
-<!--    myrecommendation () {-->
-<!--      console.log('111')-->
-<!--    }-->
-<!--  },-->
-<!--  data () {-->
-<!--    return {-->
-<!--      src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'-->
-<!--    }-->
-<!--  }-->
-<!--}-->
-<!--</script>-->
-
 <template>
   <div id="app">
     <div class="home">
@@ -205,10 +119,9 @@
               </el-submenu>
             </el-submenu>
           </el-menu>
-
         </el-col>
-
         <el-col span="6" offset="6" style="margin-top:-120px">
+          <!--the function of edit users nickname or Avatar-->
           <el-form ref="form" :model="form" label-width="80px">
             <div>
               <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
@@ -216,13 +129,14 @@
             <el-form-item label="Nickname">
               <el-input v-model="form.name"></el-input>
             </el-form-item>
+            <!--the function of edit users sex-->
             <el-form-item label="Sex" >
               <el-radio-group v-model="form.type" style="width: 100%">
                 <el-radio-button label="Male" value="Male"></el-radio-button>
                 <el-radio-button label="Female" value="Female"></el-radio-button>
-                <!--                <el-radio-button label="Conceal" value="Conceal"></el-radio-button>-->
               </el-radio-group>
             </el-form-item>
+            <!--  the function of choose users location-->
             <el-form-item label="Location">
               <el-select v-model="form.region" placeholder="请选择活动区域">
                 <el-option label="Texas" value="shanghai"></el-option>
@@ -368,50 +282,50 @@
   }
 </style>
 <script>
-    // @ is an alias to /src
-    // import HelloWorld from '@/components/HelloWorld.vue'
+// @ is an alias to /src
+// import HelloWorld from '@/components/HelloWorld.vue'
 
-    export default {
-        name: 'home',
-        data () {
-            return {
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                }
-            }
-        },
-        // data () {
-        //   return {
-        //     isCollapse: true,
-        //     paperlist: [
-        //       { author: 'wang',
-        //         date: '1101',
-        //         num_notes: 12 },
-        //       { author: 'liyong',
-        //         date: '1103',
-        //         num_notes: 15 }
-        //     ]
-        //   }
-        // },
-        created: function () {
-            // `this` 指向 vm 实例
-            console.log('a is: ' + this.a)
-        },
-
-        methods: {
-            handleOpen (key, keyPath) {
-                console.log(key, keyPath)
-            },
-            handleClose (key, keyPath) {
-                console.log(key, keyPath)
-            }
-        }
+export default {
+  name: 'home',
+  data () {
+    return {
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      }
     }
+  },
+  // data () {
+  //   return {
+  //     isCollapse: true,
+  //     paperlist: [
+  //       { author: 'wang',
+  //         date: '1101',
+  //         num_notes: 12 },
+  //       { author: 'liyong',
+  //         date: '1103',
+  //         num_notes: 15 }
+  //     ]
+  //   }
+  // },
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
+  },
+
+  methods: {
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
+    }
+  }
+}
 </script>
