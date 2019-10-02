@@ -1,225 +1,57 @@
 <template>
-  <div id="app">
-    <div class="search_page">
-      <el-row >
-        <el-col :span="4" id="left_nav">
-          <h5>catlog</h5>
-          <el-menu
-            default-active="2"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose">
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>computer</span>
-              </template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
-            </el-submenu>
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>medicine</span>
-              </template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
-            </el-submenu>
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>engineer</span>
-              </template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
-            </el-submenu>
+  <div class="login">
+    <el-row id="paper_title"  span='4' style="line-height:20px;margin-top: -100px ; margin-right: 20px" ><h3> Auto-Encoding Scene Graphs for Image Captioning </h3></el-row>
+    <el-row style="margin-top: -30px ">
+      <el-col span="16" offset="3">
+        <h style="margin-top: -300px ; margin-right: 80px;" offset="4"   ><h2>
 
-          </el-menu>
-        </el-col>
-        <el-col :span="12" id = "main_view">
-          <h style="margin-right: 700px"><h1>Search Result</h1></h>
-          <div v-for="(item,index) in paperlist">
-            <el-row>
-              <el-col :span="24" id="paper_display">
-                <div class="grid-content bg-purple-light">
-                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>Tittle </h3></el-row>
-                  <el-row id="paper_abstract" style="line-height:20px;margin-right: 80px;    overflow: hidden;
-                                                                                    -webkit-line-clamp: 4;
-                                                                                    text-overflow: ellipsis;
-                                                                                    display: -webkit-box;
-                                                                                    -webkit-box-orient: vertical;">
-                    Those books included in the Bible by a tradition or group are called canonical. A number of Bible canons have evolved, with overlapping and diverging contents.[2] The Hebrew Bible overlaps with the Greek Septuagint and the Christian Old Testament. The Christian New Testament is a collection of writings by early Christians, believed to be mostly Jewish disciples of Christ, written in first-century Koine Greek. A</el-row>
-                  <el-row id="paper_info" >
-                    <li>author : {{item.author}}  </li>
-                    <li>notes :  {{item.num_notes}}   </li>
-                  </el-row>
-                </div>
-              </el-col>
-            </el-row>
-          </div>
+          While spatial attention based decoders have proven to
+          be effective for image captioning, they cannot determine when to rely on visual signal and when to rely on the
+          language model. In this section, motivated from Merity et al. [19], we introduce a new concept – “visual senti
+          nel”, which is a latent representation of what the decoder already knows. With the “
+          visual sentinel”, we extend our spatial attention model, and propose an adaptive model tha
+          t is able to de-termine whether it needs to attend the image to predict next word.</h2></h>
+      </el-col>
+      <!--      <h style="margin-top: -300px ; margin-right: 80px;" offset="4"   ><h4>-->
 
-        </el-col>
+      <!--        While spatial attention based decoders have proven to-->
+      <!--        be effective for image captioning, they cannot determine when to rely on visual signal and when to rely on the-->
+      <!--        language model. In this section, motivated from Merity et al. [19], we introduce a new concept – “visual senti-->
+      <!--        nel”, which is a latent representation of what the decoder already knows. With the “-->
+      <!--        visual sentinel”, we extend our spatial attention model, and propose an adaptive model tha-->
+      <!--        t is able to de-termine whether it needs to attend the image to predict next word.</h4></h>-->
 
-      </el-row>
+    </el-row>
+    <el-row offset='3' span='16' id="paper_abstract" style="line-height:30px;margin-right: 80px;    font-size: 30px">
+      However, there are two shortcomings for this kind of strategy:
+      The evaluation metric is different from the training loss. This is an common issue in many problems,
+      like minimizing log-likelihood for segmentation but evaluating using mean IOU. Not only we want to get
+      better evaluation metric, but also the evaluation metric has perceptual mearning. You can think of log
+      loss as putting the same weight on all the words in the sentence,
+      our proposed approach over the state-of-the-art methods.</el-row>
 
-    </div>
+    <el-row>
+      <el-rate
+        v-model="value"
+        disabled
+        show-score
+        text-color="#ff9900"
+        score-template="{value}">
+      </el-rate>
+    </el-row>
   </div>
 </template>
 
-<style>
-  .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-aside {
-
-    text-align: center;
-    line-height: 200px;
-    line-width: 500px;
-  }
-
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-
-  body > .el-container {
-    margin-bottom: 200px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-</style>
-<style>
-  #paper_info{
-    margin-right:600px;
-    line-height:30px;
-    color: #B3C0D1;
-
-  }
-  #paper_info.el_label{
-    margin-left:40px;
-  }
-  #left_nav{
-    margin-left:180px;
-  }
-  #main_view{
-    margin-left:150px;
-
-  }
-  #paper_display{
-    line-height: 200px;
-    margin-top:20px;
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
 <script>
-  // @ is an alias to /src
-  import HelloWorld from '@/components/HelloWorld.vue'
+    export default {
+        data () {
+            return {
+                value: 3.7
+            }
+        }
 
-  export default {
-    name: 'home',
-    data () {
-      return {
-        isCollapse: true,
-        paperlist: [
-          { author: 'wang',
-            date: '1101',
-            num_notes: 12 },
-          { author: 'liyong',
-            date: '1103',
-            num_notes: 15 },
-          { author: 'liyong',
-            date: '1103',
-            num_notes: 15 },
-          { author: 'liyong',
-            date: '1103',
-            num_notes: 15 },
-          { author: 'liyong',
-            date: '1103',
-            num_notes: 15 },
-          { author: 'liyong',
-            date: '1103',
-            num_notes: 15 },
-          { author: 'liyong',
-            date: '1103',
-            num_notes: 15 }
-
-        ]
-      }
-    },
-    created: function () {
-      // `this` 指向 vm 实例
-      console.log('a is: ' + this.a)
-    },
-
-    methods: {
-      handleOpen (key, keyPath) {
-        console.log(key, keyPath)
-      },
-      handleClose (key, keyPath) {
-        console.log(key, keyPath)
-      }
     }
-  }
 </script>
+<style scoped>
+
+</style>
