@@ -54,7 +54,9 @@
                       text-color="#ff9900"
                       score-template="{value}" style="align-items: center">
                     </el-rate>
-
+                    <el-col>
+                      <el-button @click="jump">Enter the notes</el-button>
+                    </el-col>
                   </el-row>
               </div>
             </el-col>
@@ -153,7 +155,7 @@ export default {
   name: 'home',
   data () {
     return {
-      value:4.4,
+      value: 4.4,
       paperlist:
     [{ title: 'computer science',
       abstract: '',
@@ -161,18 +163,18 @@ export default {
       author: 'wang',
       date: '1101',
       num_notes: 12 },
-      { title: 'cell',
-        abstract: '',
-        content: 'This list is originally based on the answers for a Quora question I posted years ago: What are the most important research papers which all NLP studnets should definitely read?. I thank all the people who contributed to the original post.',
-        author: 'wang',
-        date: '1101',
-        num_notes: 12 },
-      { title: 'cancer',
-        abstract: '',
-        content: 'This list is far from complete or objective, and is evolving, as important papers are being published year after year. Please let me know via pull requests and issues if anything is missing.',
-        author: 'wang',
-        date: '1101',
-        num_notes: 12 }
+    { title: 'cell',
+      abstract: '',
+      content: 'This list is originally based on the answers for a Quora question I posted years ago: What are the most important research papers which all NLP studnets should definitely read?. I thank all the people who contributed to the original post.',
+      author: 'wang',
+      date: '1101',
+      num_notes: 12 },
+    { title: 'cancer',
+      abstract: '',
+      content: 'This list is far from complete or objective, and is evolving, as important papers are being published year after year. Please let me know via pull requests and issues if anything is missing.',
+      author: 'wang',
+      date: '1101',
+      num_notes: 12 }
     ]
     }
   },
@@ -184,6 +186,19 @@ export default {
   methods: {
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
+    },
+    jump () {
+    //   if (this.form.username === 'asdasd' && this.form.password === 'asdasd') {
+    //     this.$router.push({ path: '/user_center' })
+    //     this.$message.success('success')
+    //   } else {
+    //     this.$message.error('error')
+    //   }
+      // this.$router.push("/cart")
+      // 传递的参数用{{ $route.query.goodsId }}获取
+      this.$router.push({ path: '/notes' })
+      // this.$router.go(-2)
+      // 后退两步
     },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)

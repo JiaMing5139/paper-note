@@ -1,16 +1,10 @@
 <template>
-  <div class="login">
+  <div class="comp">
     <el-row id="paper_title"  span='4' style="line-height:20px;margin-top: -100px ; margin-right: 20px" ><h3> Auto-Encoding Scene Graphs for Image Captioning </h3></el-row>
     <el-row style="margin-top: -30px ">
       <el-col span="16" offset="3">
         <h style="margin-top: -300px ; margin-right: 80px;" offset="4"   ><h2>
-
-          While spatial attention based decoders have proven to
-          be effective for image captioning, they cannot determine when to rely on visual signal and when to rely on the
-          language model. In this section, motivated from Merity et al. [19], we introduce a new concept – “visual senti
-          nel”, which is a latent representation of what the decoder already knows. With the “
-          visual sentinel”, we extend our spatial attention model, and propose an adaptive model tha
-          t is able to de-termine whether it needs to attend the image to predict next word.</h2></h>
+          This is a list of 100 important natural language processing (NLP) papers that serious students and researchers working in the field should probably know about and read. This list is compiled by Masato Hagiwara. I welcome any feedback on this list.</h2></h>
       </el-col>
       <!--      <h style="margin-top: -300px ; margin-right: 80px;" offset="4"   ><h4>-->
 
@@ -43,14 +37,14 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                value: 3.7
-            }
-        }
-
+export default {
+  data () {
+    return {
+      value: 3.7
     }
+  }
+
+}
 </script>
 <style scoped>
 

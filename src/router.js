@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/home/Home.vue'
-
+import notes from './views/notes'
 
 import catlog_page from './views/home/catlog_page'
 
@@ -35,6 +35,11 @@ export default new Router({
       path: '/search_page',
       name: 'search_page',
       component: search_page
+    },
+    {
+      path: '/notes',
+      name: 'notes',
+      component: notes
     },
     {
       path: '/user_center',
