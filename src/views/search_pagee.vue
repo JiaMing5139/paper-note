@@ -2,93 +2,69 @@
   <div id="app">
     <div class="home">
       <el-row >
-        <el-row offset='3' style="font-size: 40px ">
-          <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-        </el-row>
         <el-col :span="4" id="left_nav">
           <h5>catlog</h5>
           <el-menu
-            default-active="2"
+            default-active="computer"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose">
-            <el-submenu index="1">
+            @click="handleOpen"
+            @close="handleClose"
+            router>
+            <el-submenu index="computer">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>computer science</span>
+                <span>computer</span>
               </template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
+              <el-menu-item     index="/catlog_page/AI" >AI</el-menu-item>
+              <el-menu-item   index="/catlog_page/network" >network</el-menu-item>
+              <el-menu-item   index="/catlog_page/embedding system" >embedding system</el-menu-item>
             </el-submenu>
-            <el-submenu index="1">
+            <el-submenu index="medicine">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>bioengineering</span>
+                <span>medicine</span>
               </template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
+              <el-menu-item   index="/catlog_page/cell" >cell</el-menu-item>
+              <el-menu-item   index="/catlog_page/cancer" >cancer</el-menu-item>
             </el-submenu>
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>medical science</span>
-              </template>
-              <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
-            </el-submenu>
-
           </el-menu>
         </el-col>
+        <el-col :span="12" id = "main_view">
+          <h1>Weekly paper ground</h1>
+          <div v-for="(item,index) in paperlist">
+            <el-row>
+              <el-col :span="24" id="paper_display">
+                <div class="grid-content bg-purple-light">
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap" ><h3>{{item.title}} </h3></el-row>
+                  <el-row id="paper_abstract" >
+                    <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
+                                                                                          -webkit-line-clamp: 4;
+                                                                                          text-overflow: ellipsis;
+                                                                                          display: -webkit-box;
+                                                                                          -webkit-box-orient: vertical;">
+                      <p style="margin-left: 30px">{{item.content}}</p>
+                    </div>
+                  </el-row>
+                  <el-row id="paper_info" >
+                    <span>author : {{item.author}} notes :  {{item.num_notes}}</span>
+                    <el-rate
+                      v-model="value"
+                      disabled
+                      show-score
+                      text-color="#ff9900"
+                      score-template="{value}" style="align-items: center">
+                    </el-rate>
+                    <el-col>
+                      <el-button @click="jump">Enter the notes</el-button>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
 
-      </el-row>
-      <el-row>
-        <el-row>
-          <el-col span="4" offset="10">
-            <el-row style="font-size: 40px ">
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-row>
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-row>
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-row>
-              <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-            </el-row>
-            <el-button style="font-size: 40px " @click="searchresult">search result</el-button>
-          </el-col>
-        </el-row>
+        </el-col>
+
       </el-row>
 
     </div>
@@ -132,9 +108,10 @@
 </style>
 <style>
   #paper_info{
-    margin-right:600px;
+    margin-right:400px;
     line-height:30px;
     color: #B3C0D1;
+    white-space: nowrap;
 
   }
   #paper_info.el_label{
@@ -173,22 +150,32 @@
   }
 </style>
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
   data () {
     return {
-      isCollapse: true,
-      paperlist: [
-        { author: 'wang',
-          date: '1101',
-          num_notes: 12 },
-        { author: 'liyong',
-          date: '1103',
-          num_notes: 15 }
-      ]
+      value: 4.4,
+      paperlist:
+                    [{ title: 'computer science',
+                      abstract: '',
+                      content: 'This is a list of 100 important natural language processing (NLP) papers that serious students and researchers working in the field should probably know about and read. This list is compiled by Masato Hagiwara. I welcome any feedback on this list.',
+                      author: 'wang',
+                      date: '1101',
+                      num_notes: 12 },
+                    { title: 'cell',
+                      abstract: '',
+                      content: 'This list is originally based on the answers for a Quora question I posted years ago: What are the most important research papers which all NLP studnets should definitely read?. I thank all the people who contributed to the original post.',
+                      author: 'wang',
+                      date: '1101',
+                      num_notes: 12 },
+                    { title: 'cancer',
+                      abstract: '',
+                      content: 'This list is far from complete or objective, and is evolving, as important papers are being published year after year. Please let me know via pull requests and issues if anything is missing.',
+                      author: 'wang',
+                      date: '1101',
+                      num_notes: 12 }
+                    ]
     }
   },
   created: function () {
@@ -198,6 +185,22 @@ export default {
 
   methods: {
     handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    jump () {
+      //   if (this.form.username === 'asdasd' && this.form.password === 'asdasd') {
+      //     this.$router.push({ path: '/user_center' })
+      //     this.$message.success('success')
+      //   } else {
+      //     this.$message.error('error')
+      //   }
+      // this.$router.push("/cart")
+      // 传递的参数用{{ $route.query.goodsId }}获取
+      this.$router.push({ path: '/notes' })
+      // this.$router.go(-2)
+      // 后退两步
+    },
+    handleSelect (key, keyPath) {
       console.log(key, keyPath)
     },
     handleClose (key, keyPath) {
