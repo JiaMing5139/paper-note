@@ -5,7 +5,7 @@
         <el-col :span="4" id="left_nav">
           <h5>catlog</h5>
           <el-menu
-            default-active="computer"
+            default-active="Computer"
             class="el-menu-vertical-demo"
             @click="handleOpen"
             @close="handleClose"

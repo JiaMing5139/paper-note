@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <div class="home">
@@ -119,9 +120,10 @@
               </el-submenu>
             </el-submenu>
           </el-menu>
+
         </el-col>
+
         <el-col span="6" offset="6" style="margin-top:-120px">
-          <!--the function of edit users nickname or Avatar-->
           <el-form ref="form" :model="form" label-width="80px">
             <div>
               <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
@@ -129,27 +131,26 @@
             <el-form-item label="Nickname">
               <el-input v-model="form.name"></el-input>
             </el-form-item>
-            <!--the function of edit users sex-->
             <el-form-item label="Sex" >
               <el-radio-group v-model="form.type" style="width: 100%">
                 <el-radio-button label="Male" value="Male"></el-radio-button>
                 <el-radio-button label="Female" value="Female"></el-radio-button>
+                <!--                <el-radio-button label="Conceal" value="Conceal"></el-radio-button>-->
               </el-radio-group>
             </el-form-item>
-            <!--  the function of choose users location-->
             <el-form-item label="Location">
-              <el-select v-model="form.region" placeholder="请选择活动区域">
+              <el-select v-model="form.region" placeholder="Select">
                 <el-option label="Texas" value="shanghai"></el-option>
                 <el-option label="Beijing" value="beijing"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="Birthday">
               <el-col :span="11">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                <el-date-picker type="date" placeholder="Selsect" v-model="form.date1" style="width: 100%;"></el-date-picker>
               </el-col>
               <el-col class="line" :span="2">-</el-col>
               <el-col :span="11">
-                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+                <el-time-picker placeholder="Selsect" v-model="form.date2" style="width: 100%;"></el-time-picker>
               </el-col>
             </el-form-item>
             <el-form-item label="Recommendation">
@@ -282,50 +283,50 @@
   }
 </style>
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+    // @ is an alias to /src
+    // import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'home',
-  data () {
-    return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      }
-    }
-  },
-  // data () {
-  //   return {
-  //     isCollapse: true,
-  //     paperlist: [
-  //       { author: 'wang',
-  //         date: '1101',
-  //         num_notes: 12 },
-  //       { author: 'liyong',
-  //         date: '1103',
-  //         num_notes: 15 }
-  //     ]
-  //   }
-  // },
-  created: function () {
-    // `this` 指向 vm 实例
-    console.log('a is: ' + this.a)
-  },
+    export default {
+        name: 'home',
+        data () {
+            return {
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+        // data () {
+        //   return {
+        //     isCollapse: true,
+        //     paperlist: [
+        //       { author: 'wang',
+        //         date: '1101',
+        //         num_notes: 12 },
+        //       { author: 'liyong',
+        //         date: '1103',
+        //         num_notes: 15 }
+        //     ]
+        //   }
+        // },
+        created: function () {
+            // `this` 指向 vm 实例
+            console.log('a is: ' + this.a)
+        },
 
-  methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+        methods: {
+            handleOpen (key, keyPath) {
+                console.log(key, keyPath)
+            },
+            handleClose (key, keyPath) {
+                console.log(key, keyPath)
+            }
+        }
     }
-  }
-}
 </script>
