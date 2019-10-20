@@ -15,20 +15,20 @@
           </el-submenu>
 
           <el-menu-item > <router-link to="/search_page">search_pagee</router-link></el-menu-item >
-          <el-menu-item > <el-input>
+          <el-menu-item > <el-input >
             placeholder="请输入内容"
             prefix-icon="el-icon-search"
             v-model="input2">
           </el-input></el-menu-item>
-
-          <el-submenu index="4" id ="user">
-            <template slot="title"><router-link to="/user_center">user_center</router-link></template>
-            <el-menu-item index="2-1"><router-link to="/Sign_up">Sign_up</router-link></el-menu-item>
-            <el-menu-item index="2-2"><router-link to="/Sign_in">Sign_in</router-link></el-menu-item>
-            <el-menu-item index="2-3"><router-link to="/admin">admin</router-link></el-menu-item>
-
-          </el-submenu>
-
+          <el-menu-item index="5"><router-link to="/admin">admin</router-link></el-menu-item>
+          <el-menu-item v-if="this.$store.getters.getToken !== null " index="3" id ="user1"><router-link to="/user_center">{{this.$store.getters.getAccount}}</router-link></el-menu-item>
+          <div v-else>
+            <el-submenu index="4" id ="user">
+              <template slot="title">sign in/sign up</template>
+              <el-menu-item index="2-1"><router-link to="/Sign_up">Sign_up</router-link></el-menu-item>
+              <el-menu-item index="2-2"><router-link to="/Sign_in">Sign_in</router-link></el-menu-item>
+            </el-submenu>
+          </div>
         </el-menu>
       </el-header>
 
@@ -74,13 +74,19 @@
     right:0;
     position: absolute;
   }
+  #user1{
+    top:0;
+    right:0;
+    position: absolute;
+  }
 
 }
 </style>
 <script>
-
+import global from './components/common.vue'
 export default {
   name: 'home',
+
   methods: {
     handleSelect () {
 
@@ -89,7 +95,7 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
     }
   }
 }

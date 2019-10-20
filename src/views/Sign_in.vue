@@ -1,65 +1,74 @@
 <template>
-  <!--  <p>this login</p>-->
-  <!--function: username and password-->
-  <div class="login">
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="8">
-        <el-form ref="form" :model="form" label-width="160px">
-          <el-form-item label="Account" prop="username">
-            <el-input placeholder="Input your account" v-model="form.username"></el-input>
-          </el-form-item>
-          <el-form-item label="Password" prop="password">
-            <el-input placeholder="Input your password" v-model="form.password" show-password></el-input>
-          </el-form-item>
-        </el-form>
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="9">
-        <el-button @click="jump">Login</el-button>
-        <el-button>Sign up</el-button>
-        <el-button>Forget Password ?</el-button>
-
-        <!--        <button @click="jump">Button-跳转到购物车页面</button>-->
-      </el-col>
-    </el-row>
-
+  <div class="sign-in">
+    <el-form style="width:20%;margin-left: 40%" ref = 'loginForm'  rules="rules" >
+      <el-form :label-position="labelPosition" label-width="80px" >
+        <el-form-item label="account" prop = "account">
+          <el-input v-model="login.account"></el-input>
+        </el-form-item>
+        <el-form-item label="password" prop = "password">
+          <el-input type="password" v-model="login.password" show-password></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('loginForm')">login</el-button>
+        <el-button @click="resetForm('loginForm')">reset</el-button>
+      </el-form-item>
+      </el-form>
   </div>
 </template>
 
 <script>
+import global from '../components/common.vue'
 export default {
   name: 'Sign_in',
   data () {
     return {
-      input: '',
-      input2: '',
-      form: {
-        username: '',
+      labelPosition: 'right',
+      login: {
+        account: '',
         password: ''
+      },
+      rules: {
+        account: [
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' }
+        ]
       }
+
     }
   },
-
   methods: {
-    jump () {
-      if (this.form.username === 'abc' && this.form.password === 'abc') {
-        this.$router.push({ path: '/user_center' })
-        this.$message.success('success')
-      } else {
-        this.$message.error('error')
-      }
-      // this.$router.push("/cart")
-      // 传递的参数用{{ $route.query.goodsId }}获取
-      // this.$router.go(-2)
-      // 后退两步
-    }
+    submitForm (formName) {
+      const axios = require('axios')
 
+      axios.post('http://127.0.0.1:5000/user_login', {
+        account: this.login.account,
+        password: this.login.password
+      })
+        .then((response) => {
+          if (response.data.login === 'success') {
+            global.token = response.data.uid
+            global.account = response.data.account
+            this.$store.commit('changeToken', response.data.uid)
+            this.$store.commit('changeAccount', response.data.account)
+            alert('welcome to PaperNotes')
+            this.$router.push({ path: '/' })
+          } else {
+            alert('account or passwrod is wrong')
+          }
+        })
+        // eslint-disable-next-line handle-callback-err
+        .catch(function (error) {
+          alert('network connection is failed!')
+        })
+    },
+    resetForm (formName) {
+      this.login.account = ''
+      this.login.password = ''
+      this.$refs[formName].resetFields()
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -30,12 +30,12 @@
           </el-menu>
         </el-col>
         <el-col :span="12" id = "main_view">
-          <h1>{{catlog}}</h1>
+          <h1>weekly {{catlog}}</h1>
           <div v-for="(item,index) in paperlist">
             <el-row>
               <el-col :span="24" id="paper_display">
                 <div class="grid-content bg-purple-light">
-                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px" ><h3>{{catlog}} </h3></el-row>
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap"><h3>{{catlog}} </h3></el-row>
                   <el-row id="paper_abstract" >
                     <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
                                                                                           -webkit-line-clamp: 4;
@@ -156,89 +156,25 @@ export default {
   name: 'home',
   props: ['catlog'],
 
-  mounted () {
-    // GET
-    // RECEIVE DATA
-    console.log("mounted():"+this.props.catlog)
-    if (this.catlog === 'AI') {
-      paperlist:
-        [{ title: 'computer science',
-          abstract: '',
-          content: 'hello world',
-          author: 'wang',
-          date: '1101',
-          num_notes: 12 },
-          { title: 'cell',
-            abstract: '',
-            content: '',
-            author: 'wang',
-            date: '1101',
-            num_notes: 12 },
-          { title: 'cancer',
-            abstract: '',
-            content: '',
-            author: 'wang',
-            date: '1101',
-            num_notes: 12 }
-        ]
-
-    } else if (this.catlog === 'embedding_system') {
-      paperlist:
-        [{ title: 'embedding_system',
-          abstract: '',
-          content: 'hello world',
-          author: 'wang',
-          date: '1101',
-          num_notes: 12 },
-          { title: 'embedding_system',
-            abstract: '',
-            content: '',
-            author: 'wang',
-            date: '1101',
-            num_notes: 12 },
-        ]
-      console.log('catlog:' + this.catlog)
-    } else if (this.catlog === 'network') {
-      [{ title: 'network',
-        abstract: '',
-        content: 'hello world',
-        author: 'wang',
-        date: '1101',
-        num_notes: 12 },
-        { title: 'network',
-          abstract: '',
-          content: '',
-          author: 'wang',
-          date: '1101',
-          num_notes: 12 },
-      ]
-      console.log('catlog:' + this.catlog)
-    } else if (this.catlog === 'cell') {
-      console.log('catlog:' + this.catlog)
-    } else if (this.catlog === 'cancer') {
-      console.log('catlog:' + this.catlog)
-    }
-  },
-
   data () {
     return {
-      value:4.0,
+      value: 4.0,
       paperlist:
           [{ title: 'computer science',
             abstract: '',
-            content: 'hello world',
+            content: 'Many cancers can be prevented by not smoking, maintaining a healthy weight, not drinking too much alcohol, eating plenty of vegetables, fruits and whole grains, vaccination against certain infectious diseases, not eating too much processed and red meat and avoiding too much sunlight exposure.[14][15] Early detection through screening is useful for cervical and colorectal cancer.[16] The benefits of screening in breast cancer are controversial',
             author: 'wang',
             date: '1101',
             num_notes: 12 },
           { title: 'cell',
             abstract: '',
-            content: '',
+            content: 'Cancer is a group of diseases involving abnormal cell growth with the potential to invade or spread to other parts of the body.[2][8] These contrast with benign tumors, which do not spread.[8] Possible signs and symptoms include a lump, abnormal bleeding, prolonged cough, unexplained weight loss, and a change in bowel movements.[1] While these symptoms may indicate cancer, they can also have other causes.[1] Over 100 types of cancers affect humans.[8]',
             author: 'wang',
             date: '1101',
             num_notes: 12 },
           { title: 'cancer',
             abstract: '',
-            content: '',
+            content: 'Cancer is a group of diseases involving abnormal cell growth with the potential to invade or spread to other parts of the body.[2][8] These contrast with benign tumors, which do not spread.[8] Possible signs and symptoms include a lump, abnormal bleeding, prolonged cough, unexplained weight loss, and a change in bowel movements.[1] While these symptoms may indicate cancer, they can also have other causes.[1] Over 100 types of cancers affect humans.[8]',
             author: 'wang',
             date: '1101',
             num_notes: 12 }

@@ -283,50 +283,54 @@
   }
 </style>
 <script>
-    // @ is an alias to /src
-    // import HelloWorld from '@/components/HelloWorld.vue'
+// @ is an alias to /src
+// import HelloWorld from '@/components/HelloWorld.vue'
 
-    export default {
-        name: 'home',
-        data () {
-            return {
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                }
-            }
-        },
-        // data () {
-        //   return {
-        //     isCollapse: true,
-        //     paperlist: [
-        //       { author: 'wang',
-        //         date: '1101',
-        //         num_notes: 12 },
-        //       { author: 'liyong',
-        //         date: '1103',
-        //         num_notes: 15 }
-        //     ]
-        //   }
-        // },
-        created: function () {
-            // `this` 指向 vm 实例
-            console.log('a is: ' + this.a)
-        },
-
-        methods: {
-            handleOpen (key, keyPath) {
-                console.log(key, keyPath)
-            },
-            handleClose (key, keyPath) {
-                console.log(key, keyPath)
-            }
-        }
+export default {
+  name: 'home',
+  data () {
+    return {
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      }
     }
+  },
+  // data () {
+  //   return {
+  //     isCollapse: true,
+  //     paperlist: [
+  //       { author: 'wang',
+  //         date: '1101',
+  //         num_notes: 12 },
+  //       { author: 'liyong',
+  //         date: '1103',
+  //         num_notes: 15 }
+  //     ]
+  //   }
+  // },
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
+  },
+
+  methods: {
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    onsubmit () {
+      console.log('onsubmit()')
+    }
+  }
+
+}
 </script>

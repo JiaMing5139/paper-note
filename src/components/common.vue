@@ -1,6 +1,9 @@
 <script>
+var token = ''
+var account = ''
 export default {
-  name: 'common'
+  token,
+  account
 }
 </script>
 

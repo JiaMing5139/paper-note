@@ -178,11 +178,19 @@ export default {
     ]
     }
   },
-  created: function () {
-    // `this` 指向 vm 实例
-    console.log('a is: ' + this.a)
-  },
+  mounted(){
+    const axios = require('axios')
+    axios.post('http://127.0.0.1:5000/getPaperByTopTen', {
+      'numOftop':5
+    }) .then((response) => {
+      if(response.data.query == 'success'){
 
+
+      }else{
+        alert('data required faild')
+      }
+    })
+  },
   methods: {
     handleOpen (key, keyPath) {
       console.log(key, keyPath)

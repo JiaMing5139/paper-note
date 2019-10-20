@@ -1,49 +1,37 @@
-
 <template>
-  <!--  <p>this Sign_in</p>-->
-  <div class="sign in">
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="8">
-        <el-form ref="form" :model="form" label-width="160px">
-          <el-form-item label="Account">
-            <el-input placeholder="Input your account" v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="Password">
-            <el-input placeholder="Input your password" v-model="input2" show-password></el-input>
-          </el-form-item>
-        </el-form>
-      </el-col>
-    </el-row>
+  <el-tabs type="border-card" style="width: 70%;margin-left: 200px">
+    <el-tab-pane label="upload paper">
+      <el-upload
+        class="upload-demo"
+        drag
+        accept = ".docx"
+        action="http://127.0.0.1:5000/paper_upload"
+        on-success="onSuccess"
+        multiple>
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">drag files here，or<em> click to upload</em></div>
+        <div class="el-upload__tip" slot="tip">PDF only</div>
+      </el-upload>
+    </el-tab-pane>
+    <el-tab-pane label="status">
 
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="9">
-        <el-button>Sign in</el-button><el-button>Forget Password ?</el-button>
-      </el-col>
-    </el-row>
+    </el-tab-pane>
 
-  </div>
+  </el-tabs>
 </template>
 
 <script>
-    export default {
-        name: 'Sign_in',
-        data () {
-            return {
-                input: '',
-                input2: '',
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                }
-            }
-        }
+export default {
+  name: 'admin',
+  data: function () {
+    return { message: 'hellow' }
+  },
+  methods: {
+    onSuccess (response, file, fileList) {
+      alert(file.name + 'upload success')
     }
+  }
+}
 </script>
 
 <style scoped>

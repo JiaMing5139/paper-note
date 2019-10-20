@@ -8,7 +8,7 @@ import catlog_page from './views/home/catlog_page'
 
 
 import user_center from './views/user_center'
-import admin from './views/admin'
+import admin from './views/admin.vue'
 import Sign_in from './views/Sign_in'
 import Sign_up from './views/Sign_up'
 import search_page from './views/search_page'
