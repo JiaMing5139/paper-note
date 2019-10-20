@@ -44,9 +44,35 @@
       </el-col>
     </el-row>
   </div>
+  <el-button onclick="myFunction('Harry Potter')">点击这里</el-button>
 </template>
 
 <script>
+var a = 1
+var one = 1
+if(a == 1){
+
+}else
+
+switch (a) {
+  case 1:
+    break
+  case 2:
+    break
+  case 1: // duplicate test expression
+    break
+  default:
+    break
+}
+// eslint-disable-next-line no-unused-vars
+function name (firstname, lastname) {
+  if (firstname) {
+    alert(firstname + ' ' + lastname)
+    return firstname + ' ' + lastname
+  }
+  return 0
+}
+
 export default {
   name: 'Sign_in',
   data () {
