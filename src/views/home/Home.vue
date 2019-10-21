@@ -32,9 +32,9 @@
       <el-col :span="12" id = "main_view">
        <h1>Weekly paper ground</h1>
         <div v-for="(item,index) in paperlist">
-          <el-row class="item.id" >
-            <el-col :span="24" id="paper_display">
-                <div class="grid-content bg-purple-light">
+          <el-row class="item.id"   v-on:click="say(item.id)">
+            <el-col :span="24" id="paper_display"  v-on:click="say(item.id)">
+                <div class="grid-content bg-purple-light"  v-on:click="say(item.id)">
                   <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap" ><h3>{{item.title}} </h3></el-row>
                     <el-row id="paper_abstract" >
                       <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
@@ -56,7 +56,7 @@
                     </el-rate>
                     <el-col>
 <!--                      <el-button @click="jump">Enter the notes</el-button>-->
-                      <button v-on:click="say(item.id)">Enter notes</button>
+<!--                      <button v-on:click="say(item.id)">Enter notes</button>-->
 <!--                      <button v-on:click="warn('Form cannot be submitted yet.', $item.id)">-->
 <!--                      </button>-->
                     </el-col>
@@ -160,11 +160,11 @@ export default {
     return {
       value: 4.4,
       paperlist:
-    [{ title: 'computer science',
+    [{ title: 'LOADING',
       abstract: '',
       content: 'This is a list of 100 important natural language processing (NLP) papers that serious students and researchers working in the field should probably know about and read. This list is compiled by Masato Hagiwara. I welcome any feedback on this list.',
-      author: 'wang',
-      date: '1101',
+      author: 'LOADING',
+      date: 'LOADING',
       num_notes: 12 },
     ]
     }
@@ -187,6 +187,7 @@ export default {
     },
     say: function (message) {
       alert(message)
+      this.$router.push({ path: '/notes' ,query:{pid:message}})
     },
     jump () {
     //   if (this.form.username === 'asdasd' && this.form.password === 'asdasd') {
@@ -198,7 +199,8 @@ export default {
       // this.$router.push("/cart")
       // 传递的参数用{{ $route.query.goodsId }}获取
 
-      this.$router.push({ path: '/notes' + t })
+      this.$router.push({ path: '/notes' ,params:{
+        }})
       // this.$router.go(-2)
       // 后退两步
     },

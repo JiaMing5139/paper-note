@@ -11,9 +11,9 @@
       </el-col>
     </el-row>
     <el-row style="margin-top: 0px ">
-      <el-button @click="drawer = true" type="primary" style="margin-left: 16px">
-        Open notes
-      </el-button>
+<!--      <el-button @click="drawer = true" type="primary" style="margin-left: 16px">-->
+<!--        Open notes-->
+<!--      </el-button>-->
       <el-drawer
         title="Notes"
         :visible.sync="drawer"
@@ -132,8 +132,9 @@ export default {
   },
   mounted () {
     // eslint-disable-next-line no-unused-expressions
-    //   var pid = this.$route.params.pid
-    var pid = 'c7b76f96-8045-3bbd-8b98-ae30f845d213'
+    var pid = this.$route.query.pid
+    console.log(pid)
+    // var pid = 'c7b76f96-8045-3bbd-8b98-ae30f845d213'
     const axios = require('axios')
 
     axios.post('http://127.0.0.1:5000/getPaperByPid', {
