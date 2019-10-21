@@ -11,7 +11,7 @@
           <el-form-item label="Your Last name">
             <el-input v-model="form.lastname"></el-input>
           </el-form-item>
-          <el-form-item label="Account Name">
+          <el-form-item label="Account Name" prop="accountname">
             <el-input v-model="form.accountname"></el-input>
           </el-form-item>
           <el-form-item label="Password" prop="password1">
@@ -20,7 +20,7 @@
           <el-form-item label="Confirm Password" prop="password2">
             <el-input v-model="form.password2"></el-input>
           </el-form-item>
-          <el-form-item label="E-mail">
+          <el-form-item label="E-mail" prop="email">
             <el-input v-model="form.email"></el-input>
           </el-form-item>
           <el-form-item label="Birthday">
@@ -51,10 +51,21 @@
 export default {
   name: 'Sign_up',
   data () {
+    var validatePass1 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Please enter your account'))
+      } else {
+        if (this.form.accountname !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
+        }
+        callback()
+      }
+    }
     var validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入密码'))
-      } else {
+        callback(new Error('Please enter your password'))
+      } else if (value === ''){}
+      else{
         if (this.form.password1 !== '') {
           this.$refs.ruleForm.validateField('checkPass')
         }
@@ -63,10 +74,20 @@ export default {
     }
     var validatePass2 = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请再次输入密码'))
+        callback(new Error('Please confirm your password'))
       } else if (value !== this.form.password1) {
-        callback(new Error('两次输入密码不一致!'))
+        callback(new Error('The two passwords do not match!'))
       } else {
+        callback()
+      }
+    }
+    var validatePass3 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Please enter your email'))
+      } else {
+        if (this.form.email !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
+        }
         callback()
       }
     }
@@ -89,6 +110,12 @@ export default {
         ],
         password2: [
           { validator: validatePass2, trigger: 'blur' }
+        ],
+        accountname: [
+          { validator: validatePass1, trigger: 'blur' }
+        ],
+        email: [
+          { validator: validatePass3, trigger: 'blur' }
         ]
       }
     }
