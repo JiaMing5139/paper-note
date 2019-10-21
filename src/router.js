@@ -37,7 +37,7 @@ export default new Router({
       component: search_page
     },
     {
-      path: '/notes:t',
+      path: '/notes',
       name: 'notes',
       component: notes
     },
