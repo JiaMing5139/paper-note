@@ -150,7 +150,7 @@
   }
 </style>
 <script>
-
+// import global from 'paper-note/src/components/common.vue'
 export default {
   name: 'home',
   data () {
@@ -178,15 +178,14 @@ export default {
     ]
     }
   },
-  mounted(){
+  mounted () {
     const axios = require('axios')
     axios.post('http://127.0.0.1:5000/getPaperByTopTen', {
-      'numOftop':5
-    }) .then((response) => {
-      if(response.data.query == 'success'){
-
-
-      }else{
+      'numOftop': 5
+    }).then((response) => {
+      if (response.data.query == 'success') {
+        this.paperlist = response.data.papers_json
+      } else {
         alert('data required faild')
       }
     })
