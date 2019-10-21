@@ -7,17 +7,17 @@
 
 </template>
 
-<script>
-// @ is an alias to /src
-import navigateBar from '@/components/navigateBar'
 
-export default {
-  name: 'profile_page',
-  data: function () {
-    return { message: 'hellow' }
-  },
-  component: navigateBar
-}
+
+<script>
+  // @ is an alias to /src
+  import navigateBar from '@/components/navigateBar'
+
+  export default {
+    name: 'profile_page',
+    data:{message:'hellow'},
+    component: navigateBar
+  }
 </script>
 
 <style scoped>

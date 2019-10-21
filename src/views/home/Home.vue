@@ -3,7 +3,7 @@
   <div class="home">
     <el-row >
       <el-col :span="4" id="left_nav">
-        <h5>Catlog</h5>
+        <h5>catlog</h5>
         <el-menu
           default-active="computer"
           class="el-menu-vertical-demo"
@@ -13,19 +13,19 @@
           <el-submenu index="computer">
           <template slot="title">
             <i class="el-icon-location"></i>
-            <span>Computer</span>
+            <span>computer</span>
           </template>
           <el-menu-item     index="/catlog_page/AI" >AI</el-menu-item>
-            <el-menu-item   index="/catlog_page/network" >Network</el-menu-item>
-            <el-menu-item   index="/catlog_page/embedding System" >Embedding system</el-menu-item>
+            <el-menu-item   index="/catlog_page/network" >network</el-menu-item>
+            <el-menu-item   index="/catlog_page/embedding system" >embedding system</el-menu-item>
         </el-submenu>
           <el-submenu index="medicine">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>Medicine</span>
+              <span>medicine</span>
             </template>
-            <el-menu-item   index="/catlog_page/cell" >Cell</el-menu-item>
-            <el-menu-item   index="/catlog_page/cancer" >Cancer</el-menu-item>
+            <el-menu-item   index="/catlog_page/cell" >cell</el-menu-item>
+            <el-menu-item   index="/catlog_page/cancer" >cancer</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>

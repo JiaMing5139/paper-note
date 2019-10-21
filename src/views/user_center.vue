@@ -283,18 +283,6 @@
   }
 </style>
 <script>
-var p = {
-  get name () {
-    return 'nicholas'
-  }
-}
-
-Object.defineProperty(p, 'age', {
-  get: function () {
-    return 17
-  }
-})
-
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 
@@ -338,7 +326,11 @@ export default {
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
+    },
+    onsubmit () {
+      console.log('onsubmit()')
     }
   }
+
 }
 </script>
