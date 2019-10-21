@@ -32,7 +32,7 @@
       <el-col :span="12" id = "main_view">
        <h1>Weekly paper ground</h1>
         <div v-for="(item,index) in paperlist">
-          <el-row>
+          <el-row class="item.id" >
             <el-col :span="24" id="paper_display">
                 <div class="grid-content bg-purple-light">
                   <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap" ><h3>{{item.title}} </h3></el-row>
@@ -42,7 +42,7 @@
                                                                                           text-overflow: ellipsis;
                                                                                           display: -webkit-box;
                                                                                           -webkit-box-orient: vertical;">
-                        <p style="margin-left: 30px">{{item.content}}</p>
+                        <p style="margin-left: 30px">{{item.abstract}}</p>
                       </div>
                     </el-row>
                   <el-row id="paper_info" >
@@ -55,7 +55,10 @@
                       score-template="{value}" style="align-items: center">
                     </el-rate>
                     <el-col>
-                      <el-button @click="jump">Enter the notes</el-button>
+<!--                      <el-button @click="jump">Enter the notes</el-button>-->
+                      <button v-on:click="say(item.id)">Enter notes</button>
+<!--                      <button v-on:click="warn('Form cannot be submitted yet.', $item.id)">-->
+<!--                      </button>-->
                     </el-col>
                   </el-row>
               </div>
@@ -163,24 +166,27 @@ export default {
       author: 'wang',
       date: '1101',
       num_notes: 12 },
-    { title: 'cell',
-      abstract: '',
-      content: 'This list is originally based on the answers for a Quora question I posted years ago: What are the most important research papers which all NLP studnets should definitely read?. I thank all the people who contributed to the original post.',
-      author: 'wang',
-      date: '1101',
-      num_notes: 12 },
-    { title: 'cancer',
-      abstract: '',
-      content: 'This list is far from complete or objective, and is evolving, as important papers are being published year after year. Please let me know via pull requests and issues if anything is missing.',
-      author: 'wang',
-      date: '1101',
-      num_notes: 12 }
     ]
     }
+  },
+  mounted () {
+    const axios = require('axios')
+    axios.post('http://127.0.0.1:5000/getPaperByTopTen', {
+      'numOftop': 5
+    }).then((response) => {
+      if (response.data.query == 'success') {
+        this.paperlist = response.data.papers_json
+      } else {
+        alert('data required faild')
+      }
+    })
   },
   methods: {
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
+    },
+    say: function (message) {
+      alert(message)
     },
     jump () {
     //   if (this.form.username === 'asdasd' && this.form.password === 'asdasd') {
@@ -191,7 +197,8 @@ export default {
     //   }
       // this.$router.push("/cart")
       // 传递的参数用{{ $route.query.goodsId }}获取
-      this.$router.push({ path: '/notes' })
+
+      this.$router.push({ path: '/notes' + t })
       // this.$router.go(-2)
       // 后退两步
     },
