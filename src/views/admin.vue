@@ -31,9 +31,9 @@ export default {
   methods: {
     onSuccess (response, file, fileList) {
       this.loading = false
-      alert(file.name + 'upload success')
+      alert(file.name + '  upload success')
     },
-    function (event, file, fileList) {
+    onProcess (event, file, fileList) {
       this.loading = true
     }
   }

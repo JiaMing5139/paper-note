@@ -31,7 +31,7 @@
       </el-col>
       <el-col :span="12" id = "main_view">
        <h1>Weekly paper ground</h1>
-        <div v-for="(item,index) in paperlist">
+        <div v-for="(item,index) in paperlist"   v-loading="loading">
           <el-row class="item.id"   v-on:click="say(item.id)">
             <el-col :span="24" id="paper_display"  v-on:click="say(item.id)">
                 <div class="grid-content bg-purple-light"  v-on:click="say(item.id)">
@@ -159,6 +159,7 @@ export default {
   data () {
     return {
       value: 0,
+      loading:false,
       paperlist:
     [{ title: 'LOADING',
       abstract: '',
@@ -171,10 +172,12 @@ export default {
   },
   mounted () {
     const axios = require('axios')
+    this.loading = true
     axios.post('http://127.0.0.1:5000/getPaperByTopTen', {
       'numOftop': 5
     }).then((response) => {
       if (response.data.query == 'success') {
+        this.loading = false
         this.paperlist = response.data.papers_json
       } else {
         alert('data required faild')

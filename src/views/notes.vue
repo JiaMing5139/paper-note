@@ -5,7 +5,7 @@
     <el-row span="16" offset="3">
       <el-col :span="15" :offset="5">
         <div v-on:click="paper_click($event)">
-          <span v-html="paper.content" style="margin-top: -500px ; margin-right: 20px;" offset="4"   >{{paper.content}}<font size="3">
+          <span v-loading="loading" v-html="paper.content" style="margin-top: -500px ; margin-right: 20px;" offset="4"   >{{paper.content}}<font size="3">
          </font></span>
         </div>
       </el-col>
@@ -54,6 +54,7 @@ export default {
 
   data () {
     return {
+      loading: false,
       drawer: false,
       direction: 'rtl',
       textareaNotes: '',
@@ -73,7 +74,6 @@ export default {
     drawer_close () {
       document.getElementsByClassName(this.curretCus)[0].style.color = '#000000'
       this.noteslist = []
-
     },
     paper_click (events) {
       console.log('i have been clicked')
@@ -87,7 +87,7 @@ export default {
       document.getElementsByClassName(id)[0].style.color = '#8A2BE2'
       //  console.log(this.notesdict.hasOwnProperty(this.curretCus))
       if (this.notesdict[this.curretCus] !== undefined) {
-        this.noteslist = this.notesdict[this.curretCus]
+        this.noteslist = this.notesdict[this.curretCus].slice(0)
       } else {
         this.noteslist = []
         // eslint-disable-next-line no-unused-expressions
@@ -111,6 +111,7 @@ export default {
   },
   mounted () {
     // eslint-disable-next-line no-unused-expressions
+    this.loading = true
     var pid = this.$route.query.pid
     console.log(pid)
     // var pid = 'c7b76f96-8045-3bbd-8b98-ae30f845d213'
@@ -120,6 +121,7 @@ export default {
       pid: pid
     })
       .then((response) => {
+        this.loading = false
         this.paper.id = response.data.id
         this.paper.title = response.data.title
         this.paper.author = response.data.author

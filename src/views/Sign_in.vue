@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in">
-    <el-form style="width:20%;margin-left: 40%" ref = 'loginForm'  rules="rules" >
+    <el-form style="width:20%;margin-left: 40%" ref = 'loginForm'  v-loading="loading"  >
       <el-form :label-position="labelPosition" label-width="80px" >
         <el-form-item label="account" prop = "account">
           <el-input v-model="login.account"></el-input>
@@ -23,6 +23,7 @@ export default {
   name: 'Sign_in',
   data () {
     return {
+      loading: false,
       labelPosition: 'right',
       login: {
         account: '',
@@ -42,12 +43,13 @@ export default {
   methods: {
     submitForm (formName) {
       const axios = require('axios')
-
+      this.loading = true
       axios.post('http://127.0.0.1:5000/user_login', {
         account: this.login.account,
         password: this.login.password
       })
         .then((response) => {
+          this.loading = false
           if (response.data.login === 'success') {
             global.token = response.data.uid
             global.account = response.data.account
