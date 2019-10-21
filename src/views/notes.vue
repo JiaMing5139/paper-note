@@ -17,13 +17,12 @@
       <el-drawer
         title="Notes"
         :visible.sync="drawer"
-        :direction="rtl"
-        :before-close="handleClose">
+         @close="drawer_close">
         <div style="width:500px;height:550px;overflow:scroll;">
           <div v-for="(item,index) in noteslist" v-bind="item.id" class="infinite-list-item">
             <div class="grid-content bg-purple-light" style="margin-top: 30px">
-              <el-row >{{index + 1 + '   ' }}{{'user:' + item.user}}</el-row>
-              <span>{{item.notes}}</span>
+              <el-row >{{index + 1 + '   ' }}{{item.user}}</el-row>
+              <span style="color: cadetblue;font-size: 24px;margin-left: 50px">{{item.notes}}</span>
               <el-row>
                 <el-rate
                   v-model=item.rate
@@ -58,76 +57,56 @@ export default {
       drawer: false,
       direction: 'rtl',
       textareaNotes: '',
+      curretCus: '',
       paper: {
         'id': '',
         'title': '',
         'author': '',
         'content': ''
       },
-      noteslist: [
-        { 'id': 123,
-          'user': 'hahaha',
-          'date': '',
-          'notes': 'However, there are two shortcomings for this kind of strategy:\n' +
-              '        The evaluation metric is different from the training loss. This is an common issue in many problems,like\n' +
-              '        minimizing log-likelihood for segmentation but evaluating using mean IOU. Not only we want to get better\n' +
-              '        evaluation metric, but also the evaluation metric has perceptual mearning. You can think of log loss as\n' +
-              '        putting the same weight on all the words in the sentence, our proposed approach over the state-of-the-art\n' +
-              '        methods',
-          'rate': 4.5 },
-        {
-          'id': 123,
-          'user': 'super man',
-          'date': '',
-          'notes': 'However, there are two shortcomings for this kind of strategy:\n' +
-              '        The evaluation metric is different from the training loss. This is an common issue in many problems,like\n' +
-              '        minimizing log-likelihood for segmentation but evaluating using mean IOU. Not only we want to get better\n' +
-              '        evaluation metric, but also the evaluation metric has perceptual mearning. You can think of log loss as\n' +
-              '        putting the same weight on all the words in the sentence, our proposed approach over the state-of-the-art\n' +
-              '        methods',
-          'rate': 3.3 },
-        {
-          'id': 123,
-          'user': 'super man',
-          'date': '',
-          'notes': 'However, there are two shortcomings for this kind of strategy:\n' +
-              '        The evaluation metric is different from the training loss. This is an common issue in many problems,like\n' +
-              '        minimizing log-likelihood for segmentation but evaluating using mean IOU. Not only we want to get better\n' +
-              '        evaluation metric, but also the evaluation metric has perceptual mearning. You can think of log loss as\n' +
-              '        putting the same weight on all the words in the sentence, our proposed approach over the state-of-the-art\n' +
-              '        methods',
-          'rate': 3.3 },
-        {
-          'id': 123,
-          'user': 'super man',
-          'date': '',
-          'notes': 'However, there are two shortcomings for this kind of strategy:\n' +
-              '        The evaluation metric is different from the training loss. This is an common issue in many problems,like\n' +
-              '        minimizing log-likelihood for segmentation but evaluating using mean IOU. Not only we want to get better\n' +
-              '        evaluation metric, but also the evaluation metric has perceptual mearning. You can think of log loss as\n' +
-              '        putting the same weight on all the words in the sentence, our proposed approach over the state-of-the-art\n' +
-              '        methods',
-          'rate': 3.3 }
-      ]
+      noteslist: [],
+      notesdict: {}
 
     }
   },
   methods: {
+    drawer_close () {
+      document.getElementsByClassName(this.curretCus)[0].style.color = '#000000'
+      this.noteslist = []
+
+    },
     paper_click (events) {
       console.log('i have been clicked')
       this.drawer = true
+
       // eslint-disable-next-line no-unused-expressions
       var id = events.target.classList
-      alert(id)
+      this.curretCus = id
+      // alert(id)
+
+      document.getElementsByClassName(id)[0].style.color = '#8A2BE2'
+      //  console.log(this.notesdict.hasOwnProperty(this.curretCus))
+      if (this.notesdict[this.curretCus] !== undefined) {
+        this.noteslist = this.notesdict[this.curretCus]
+      } else {
+        this.noteslist = []
+        // eslint-disable-next-line no-unused-expressions
+        this.notesdict[this.curretCus] = []
+      }
+      console.log(this.notesdict)
+      this.drawer = true
     },
     makeNotesClick () {
-      // if (this.$store.getters.getToken === null) {
-      //   alert('please sign in first!')
-      //   return
-      // }
+      if (this.$store.getters.getToken === null) {
+        alert('please sign in first!')
+        return
+      }
       // var notesdict = { 'id': this.$store.getters.getToken, 'user': this.$store.getters.getAccount,'notes': this.textareaNotes,'rate': 0}
-      var notesdict = { 'id': 123, 'user': 'superman', 'notes': this.textareaNotes, 'rate': 0 }
+      var notesdict = { 'id': 123, 'user': this.$store.getters.getAccount, 'notes': this.textareaNotes, 'rate': 0 }
       this.noteslist.push(notesdict)
+      console.log('currentcus:' + this.curretCus)
+      this.notesdict[this.curretCus].push(notesdict)
+      this.textareaNotes = ''
     }
   },
   mounted () {

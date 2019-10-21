@@ -10,7 +10,7 @@
         multiple>
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">drag files here，or<em> click to upload</em></div>
-        <div class="el-upload__tip" slot="tip">PDF only</div>
+        <div class="el-upload__tip" slot="tip">Docx only</div>
       </el-upload>
     </el-tab-pane>
     <el-tab-pane label="status">

@@ -158,14 +158,14 @@ export default {
   name: 'home',
   data () {
     return {
-      value: 4.4,
+      value: 0,
       paperlist:
     [{ title: 'LOADING',
       abstract: '',
       content: 'This is a list of 100 important natural language processing (NLP) papers that serious students and researchers working in the field should probably know about and read. This list is compiled by Masato Hagiwara. I welcome any feedback on this list.',
       author: 'LOADING',
       date: 'LOADING',
-      num_notes: 12 },
+      num_notes: 0 },
     ]
     }
   },
@@ -186,7 +186,7 @@ export default {
       console.log(key, keyPath)
     },
     say: function (message) {
-      alert(message)
+     // alert(message)
       this.$router.push({ path: '/notes' ,query:{pid:message}})
     },
     jump () {
