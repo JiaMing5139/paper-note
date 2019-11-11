@@ -5,12 +5,12 @@
     <el-row span="16" offset="3">
       <el-col :span="15" :offset="5">
         <div v-on:click="paper_click($event)">
-          <span v-loading="loading" v-html="paper.content" style="margin-top: -500px ; margin-right: 20px;" offset="4"   >{{paper.content}}<font size="3">
+          <span v-loading="loading_paper" v-html="paper.content" style="margin-top: -500px ; margin-right: 20px;" offset="4"   >{{paper.content}}<font size="3">
          </font></span>
         </div>
       </el-col>
     </el-row>
-    <el-row style="margin-top: 0px ">
+    <el-row style="margin-top: 0px "  >
 <!--      <el-button @click="drawer = true" type="primary" style="margin-left: 16px">-->
 <!--        Open notes-->
 <!--      </el-button>-->
@@ -18,22 +18,19 @@
         title="Notes"
         :visible.sync="drawer"
          @close="drawer_close">
-        <div style="width:500px;height:550px;overflow:scroll;">
-          <div v-for="(item,index) in noteslist" v-bind="item.id" class="infinite-list-item">
-            <div class="grid-content bg-purple-light" style="margin-top: 30px">
-              <el-row >{{index + 1 + '   ' }}{{item.user}}</el-row>
-              <span style="color: cadetblue;font-size: 24px;margin-left: 50px">{{item.notes}}</span>
+        <div style="width:500px;height:550px;overflow:scroll;"  v-loading="loading_note">
+          <div v-for="(item,index) in noteslist" v-bind="item.id" class="infinite-list-item" >
+<!--            <div class="grid-content bg-purple-light" style="margin-top: 30px">-->
+              <el-row >{{index + 1 + '   ' }}{{item.account}}</el-row>
+              <span style="color: cadetblue;font-size: 24px;margin-left: 50px">{{item.note}}</span>
               <el-row>
-                <el-rate
-                  v-model=item.rate
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value}">
-                </el-rate>
+                <button>thump up</button>
+                <button>reply  </button>
+                <el-row STYLE="color: cornflowerblue;margin-left:40%">▾ view {{item.numOfcomments}} comments</el-row>
               </el-row>
+              <el-divider></el-divider>
             </div>
-          </div>
+<!--          </div>-->
         </div>
         <el-input
           type="textarea"
@@ -49,12 +46,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
+
 export default {
 
   data () {
     return {
-      loading: false,
+      pid: '',
+      loading_paper: false,
+      loading_note: false,
       drawer: false,
       direction: 'rtl',
       textareaNotes: '',
@@ -82,10 +81,39 @@ export default {
       // eslint-disable-next-line no-unused-expressions
       var id = events.target.classList
       this.curretCus = id
-      // alert(id)
+      // alert(this.curretCus)
 
       document.getElementsByClassName(id)[0].style.color = '#8A2BE2'
       //  console.log(this.notesdict.hasOwnProperty(this.curretCus))
+      this.loading_note = true
+      const axios = require('axios')
+      console.log('编号:' + this.curretCus + 'END')
+      axios.post('http://127.0.0.1:5000/note_get', {
+        note: this.textareaNotes,
+        uid: this.$store.getters.getToken,
+        sid: this.curretCus,
+        pid: this.pid
+      })
+        .then((response) => {
+          this.loading_note = false
+          if (response.data.state === 'success') {
+            this.noteslist = response.data.notes_json
+            console.log(this.noteslist)
+            // global.token = response.data.uid
+            // global.account = response.data.account
+            // this.$store.commit('changeToken', response.data.uid)
+            // this.$store.commit('changeAccount', response.data.account)
+
+            // this.$router.push({ path: '/' })
+          } else {
+
+          }
+        })
+        // eslint-disable-next-line handle-callback-err
+        .catch(function (error) {
+          alert('network connection is failed!')
+        })
+
       if (this.notesdict[this.curretCus] !== undefined) {
         this.noteslist = this.notesdict[this.curretCus].slice(0)
       } else {
@@ -93,7 +121,7 @@ export default {
         // eslint-disable-next-line no-unused-expressions
         this.notesdict[this.curretCus] = []
       }
-      console.log(this.notesdict)
+      // console.log(this.notesdict)
       this.drawer = true
     },
     makeNotesClick () {
@@ -102,7 +130,34 @@ export default {
         return
       }
       // var notesdict = { 'id': this.$store.getters.getToken, 'user': this.$store.getters.getAccount,'notes': this.textareaNotes,'rate': 0}
-      var notesdict = { 'id': 123, 'user': this.$store.getters.getAccount, 'notes': this.textareaNotes, 'rate': 0 }
+      this.loading_note = true
+      const axios = require('axios')
+      console.log('编号:' + this.curretCus + 'END')
+      axios.post('http://127.0.0.1:5000/note_add', {
+        note: this.textareaNotes,
+        uid: this.$store.getters.getToken,
+        sid: this.curretCus,
+        pid: this.pid
+
+      })
+        .then((response) => {
+          this.loading_note = false
+          if (response.data.state === 'success') {
+            // global.token = response.data.uid
+            // global.account = response.data.account
+            // this.$store.commit('changeToken', response.data.uid)
+            // this.$store.commit('changeAccount', response.data.account)
+            alert('Successful!')
+            // this.$router.push({ path: '/' })
+          } else {
+            alert('Fail!')
+          }
+        })
+        // eslint-disable-next-line handle-callback-err
+        .catch(function (error) {
+          alert('network connection is failed!')
+        })
+      var notesdict = { 'id': 123, 'user': this.$store.getters.getAccount, 'notes': this.textareaNotes, 'rate': 0, 'numOfcomments': 5 }
       this.noteslist.push(notesdict)
       console.log('currentcus:' + this.curretCus)
       this.notesdict[this.curretCus].push(notesdict)
@@ -111,8 +166,9 @@ export default {
   },
   mounted () {
     // eslint-disable-next-line no-unused-expressions
-    this.loading = true
+    this.loading_paper = true
     var pid = this.$route.query.pid
+    this.pid = pid
     console.log(pid)
     // var pid = 'c7b76f96-8045-3bbd-8b98-ae30f845d213'
     const axios = require('axios')
@@ -121,7 +177,7 @@ export default {
       pid: pid
     })
       .then((response) => {
-        this.loading = false
+        this.loading_paper = false
         this.paper.id = response.data.id
         this.paper.title = response.data.title
         this.paper.author = response.data.author

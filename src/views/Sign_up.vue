@@ -14,11 +14,11 @@
           <el-form-item label="Account Name" prop="accountname">
             <el-input v-model="form.accountname"></el-input>
           </el-form-item>
-          <el-form-item label="Password" prop="password1">
-            <el-input v-model="form.password1"></el-input>
+          <el-form-item   label="Password" prop="password1" show-pass>
+            <el-input type="password" v-model="form.password1"></el-input>
           </el-form-item>
-          <el-form-item label="Confirm Password" prop="password2">
-            <el-input v-model="form.password2"></el-input>
+          <el-form-item  label="Confirm Password" prop="password2">
+            <el-input type="password"  v-model="form.password2"></el-input>
           </el-form-item>
           <el-form-item label="E-mail" prop="email">
             <el-input v-model="form.email"></el-input>
@@ -64,8 +64,7 @@ export default {
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('Please enter your password'))
-      } else if (value === ''){}
-      else{
+      } else if (value === '') {} else {
         if (this.form.password1 !== '') {
           this.$refs.ruleForm.validateField('checkPass')
         }

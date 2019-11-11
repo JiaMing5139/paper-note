@@ -20,7 +20,7 @@
             prefix-icon="el-icon-search"
             v-model="input2">
           </el-input></el-menu-item>
-          <el-menu-item index="5"><router-link to="/admin">admin</router-link></el-menu-item>
+<!--         admin</router-link></el-menu-item> <el-menu-item index="5"><router-link to="/admin">-->
           <el-menu-item v-if="this.$store.getters.getToken !== null " index="3" id ="user1"><router-link to="/user_center">{{this.$store.getters.getAccount}}</router-link></el-menu-item>
           <div v-else>
             <el-submenu index="4" id ="user">
