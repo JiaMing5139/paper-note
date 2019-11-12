@@ -15,10 +15,10 @@
           </el-submenu>
 
           <el-menu-item > <router-link to="/search_page">search_pagee</router-link></el-menu-item >
-          <el-menu-item > <el-input >
+          <el-menu-item > <el-input
             placeholder="请输入内容"
             prefix-icon="el-icon-search"
-            v-model="input2">
+            v-model="input2"> >
           </el-input></el-menu-item>
 <!--         admin</router-link></el-menu-item> <el-menu-item index="5"><router-link to="/admin">-->
           <el-menu-item v-if="this.$store.getters.getToken !== null " index="3" id ="user1"><router-link to="/user_center">{{this.$store.getters.getAccount}}</router-link></el-menu-item>
@@ -94,8 +94,9 @@ export default {
   },
   data () {
     return {
+      input2: '',
       activeIndex: '1',
-      activeIndex2: '1',
+      activeIndex2: '1'
     }
   }
 }

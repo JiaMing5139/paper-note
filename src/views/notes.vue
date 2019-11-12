@@ -18,16 +18,29 @@
         title="Notes"
         :visible.sync="drawer"
          @close="drawer_close">
-        <div style="width:500px;height:550px;overflow:scroll;"  v-loading="loading_note">
+        <div style="width:600px;height:550px;overflow:scroll;"  v-loading="loading_note">
           <div v-for="(item,index) in noteslist" v-bind="item.id" class="infinite-list-item" >
 <!--            <div class="grid-content bg-purple-light" style="margin-top: 30px">-->
-              <el-row >{{index + 1 + '   ' }}{{item.account}}</el-row>
+              <el-row >
+                {{index + 1 + '   ' }}
+                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                {{item.account}}</el-row>
               <span style="color: cadetblue;font-size: 24px;margin-left: 50px">{{item.note}}</span>
               <el-row>
-                <button>thump up</button>
-                <button>reply  </button>
-                <el-row STYLE="color: cornflowerblue;margin-left:40%">▾ view {{item.numOfcomments}} comments</el-row>
+                <el-button size="mini" >like  {{item.thumup}}</el-button>
+                <!--                </el-badge>-->
+                <!--                <el-badge :value="2" class="item" type="primary">-->
+                <el-button size="mini" @click="replyclick(item.ifClickReply,item.id)">reply</el-button>
+                <el-row STYLE="color: cornflowerblue;margin-left:40%" v-if="item.numOfReply">▾ view {{item.numOfcomments}} comments</el-row>
+
               </el-row>
+            <el-row v-if="item.ifClickReply">
+             <el-row > <el-input  placeholder="please make comments here" v-model="subcomentlist[index]" > </el-input></el-row>
+             <el-row style="margin-left: 60%">
+               <el-button size="mini" @click="cancleReply(item.id)">cancle</el-button>
+               <el-button size="mini" @click="commentComment(item.id, item.note, index)">comment</el-button>
+             </el-row>
+            </el-row>
               <el-divider></el-divider>
             </div>
 <!--          </div>-->
@@ -48,9 +61,9 @@
 <script>
 
 export default {
-
   data () {
     return {
+      subcomentlist: [],
       pid: '',
       loading_paper: false,
       loading_note: false,
@@ -70,9 +83,77 @@ export default {
     }
   },
   methods: {
+    commentComment (paraentNoteId, noteContent, index) {
+      alert(paraentNoteId + noteContent + this.subcomentlist[index])
+      // if (this.$store.getters.getToken === null) {
+      //   alert('please sign in first!')
+      //   return
+      // }
+      // this.loading_note = true
+      // const axios = require('axios')
+      // console.log('编号:' + this.curretCus + 'END')
+      // axios.post('http://127.0.0.1:5000/note_add', {
+      //   note: noteContent,
+      //   uid: this.$store.getters.getToken,
+      //   paraentId: paraentNoteId
+      // })
+      //   .then((response) => {
+      //     this.loading_note = false
+      //     if (response.data.state === 'success') {
+      //       var id = response.data.new_id
+      //       // global.token = response.data.uid
+      //       // global.account = response.data.account
+      //       // this.$store.commit('changeToken', response.data.uid)
+      //       // this.$store.commit('changeAccount', response.data.account)
+      //       alert('Successful!')
+      //       var notesdict = { 'id': id, 'account': this.$store.getters.getAccount, 'note': this.textareaNotes, 'rate': 0, 'numOfcomments': 0, 'thumup': 0, 'ifClickReply': false, 'numOfReply': 0 }
+      //       this.noteslist.push(notesdict)
+      //       // this.$router.push({ path: '/' })
+      //       this.textareaNotes = ''
+      //     } else if (response.data.state === 'badcomment') {
+      //       this.textareaNotes = ''
+      //       alert('bad comment')
+      //     } else {
+      //       this.textareaNotes = ''
+      //       alert('Fail!')
+      //     }
+      //   })
+      //   // eslint-disable-next-line handle-callback-err
+      //   .catch(function (error) {
+      //     alert('network connection is failed!')
+      //   })
+    },
+    cancleReply (id) {
+      for (var index = 0; index < this.noteslist.length; index++) {
+        if (this.noteslist[index]['id'] === id) {
+          var newnode = this.noteslist[index]
+          newnode['ifClickReply'] = false
+          this.noteslist.splice(index, 1, newnode)
+          break
+        }
+      }
+    },
+    replyclick (ifClickReply, id) {
+      ifClickReply = true
+      for (var index = 0; index < this.noteslist.length; index++) {
+        if (this.noteslist[index]['id'] === id) {
+          var newnode = this.noteslist[index]
+          newnode['ifClickReply'] = true
+          this.noteslist.splice(index, 1, newnode)
+          break
+        }
+      }
+      console.log(this.noteslist)
+      var liscpy = this.noteslist
+      this.noteslist = liscpy
+      var text = this.textareaNotes
+      this.textareaNotes = text
+    },
     drawer_close () {
       document.getElementsByClassName(this.curretCus)[0].style.color = '#000000'
+      this.ifReply = false
       this.noteslist = []
+      this.subcomentlist = []
     },
     paper_click (events) {
       console.log('i have been clicked')
@@ -98,13 +179,10 @@ export default {
           this.loading_note = false
           if (response.data.state === 'success') {
             this.noteslist = response.data.notes_json
+            for (var index = 0; index < this.noteslist.length; index++) {
+              this.noteslist[index]['ifClickReply'] = false
+            }
             console.log(this.noteslist)
-            // global.token = response.data.uid
-            // global.account = response.data.account
-            // this.$store.commit('changeToken', response.data.uid)
-            // this.$store.commit('changeAccount', response.data.account)
-
-            // this.$router.push({ path: '/' })
           } else {
 
           }
@@ -113,15 +191,6 @@ export default {
         .catch(function (error) {
           alert('network connection is failed!')
         })
-
-      if (this.notesdict[this.curretCus] !== undefined) {
-        this.noteslist = this.notesdict[this.curretCus].slice(0)
-      } else {
-        this.noteslist = []
-        // eslint-disable-next-line no-unused-expressions
-        this.notesdict[this.curretCus] = []
-      }
-      // console.log(this.notesdict)
       this.drawer = true
     },
     makeNotesClick () {
@@ -129,7 +198,6 @@ export default {
         alert('please sign in first!')
         return
       }
-      // var notesdict = { 'id': this.$store.getters.getToken, 'user': this.$store.getters.getAccount,'notes': this.textareaNotes,'rate': 0}
       this.loading_note = true
       const axios = require('axios')
       console.log('编号:' + this.curretCus + 'END')
@@ -143,13 +211,21 @@ export default {
         .then((response) => {
           this.loading_note = false
           if (response.data.state === 'success') {
+            var id = response.data.new_id
             // global.token = response.data.uid
             // global.account = response.data.account
             // this.$store.commit('changeToken', response.data.uid)
             // this.$store.commit('changeAccount', response.data.account)
             alert('Successful!')
+            var notesdict = { 'id': id, 'account': this.$store.getters.getAccount, 'note': this.textareaNotes, 'rate': 0, 'numOfcomments': 0, 'thumup': 0, 'ifClickReply': false, 'numOfReply': 0 }
+            this.noteslist.push(notesdict)
             // this.$router.push({ path: '/' })
+            this.textareaNotes = ''
+          } else if (response.data.state === 'badcomment') {
+            this.textareaNotes = ''
+            alert('bad comment')
           } else {
+            this.textareaNotes = ''
             alert('Fail!')
           }
         })
@@ -157,11 +233,9 @@ export default {
         .catch(function (error) {
           alert('network connection is failed!')
         })
-      var notesdict = { 'id': 123, 'user': this.$store.getters.getAccount, 'notes': this.textareaNotes, 'rate': 0, 'numOfcomments': 5 }
-      this.noteslist.push(notesdict)
-      console.log('currentcus:' + this.curretCus)
-      this.notesdict[this.curretCus].push(notesdict)
-      this.textareaNotes = ''
+
+      // console.log('currentcus:' + this.curretCus)
+      // this.notesdict[this.curretCus].push(notesdict)
     }
   },
   mounted () {

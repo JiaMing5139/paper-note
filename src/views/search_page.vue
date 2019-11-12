@@ -30,7 +30,7 @@
           </el-menu>
         </el-col>
         <el-col :span="12" id = "main_view">
-          <h1>search whatever you want</h1>
+          <h1>Key Word:Computer</h1>
           <div v-for="(item,index) in paperlist">
             <el-row>
               <el-col :span="24" id="paper_display">
@@ -163,13 +163,13 @@ export default {
                       author: 'wang',
                       date: '1101',
                       num_notes: 12 },
-                    { title: 'cell',
+                    { title: 'network',
                       abstract: '',
                       content: 'This list is originally based on the answers for a Quora question I posted years ago: What are the most important research papers which all NLP studnets should definitely read?. I thank all the people who contributed to the original post.',
                       author: 'wang',
                       date: '1101',
                       num_notes: 12 },
-                    { title: 'cancer',
+                    { title: 'block-chain',
                       abstract: '',
                       content: 'This list is far from complete or objective, and is evolving, as important papers are being published year after year. Please let me know via pull requests and issues if anything is missing.',
                       author: 'wang',
