@@ -14,11 +14,22 @@
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
 
-          <el-menu-item > <router-link to="/search_page">search_pagee</router-link></el-menu-item >
+          <el-menu-item v-on:click="search_jump"> search_page</el-menu-item >
+          <el-menu-item>
+            <el-select v-model="value" placeholder="select" style="width: 50%;margin-left: -50%">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-menu-item>
           <el-menu-item > <el-input
-            placeholder="请输入内容"
+            placeholder="plase input key word"
             prefix-icon="el-icon-search"
-            v-model="input2"> >
+            v-model="search_input"
+            style="margin-left: -120%;width: 110%"> >
           </el-input></el-menu-item>
 <!--         admin</router-link></el-menu-item> <el-menu-item index="5"><router-link to="/admin">-->
           <el-menu-item v-if="this.$store.getters.getToken !== null " index="3" id ="user1"><router-link to="/user_center">{{this.$store.getters.getAccount}}</router-link></el-menu-item>
@@ -90,13 +101,24 @@ export default {
   methods: {
     handleSelect () {
 
+    },
+    search_jump () {
+      this.$router.push({ path: '/search_page', query: { catlog: this.value, keyword: this.search_input } })
     }
   },
   data () {
     return {
-      input2: '',
+      search_input: '',
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      options: [{
+        value: 'paper',
+        label: 'paper'
+      }, {
+        value: 'note',
+        label: 'note'
+      }],
+      value: ''
     }
   }
 }

@@ -30,12 +30,13 @@
           </el-menu>
         </el-col>
         <el-col :span="12" id = "main_view">
-          <h1>Key Word:Computer</h1>
-          <div v-for="(item,index) in paperlist">
+          <h1>Key Word:{{this.$route.query.keyword}}</h1>
+          <span  v-loading="loading">
+          <div v-for="(item,index) in SearchResultList"  v-loading="loading" >
             <el-row>
-              <el-col :span="24" id="paper_display">
-                <div class="grid-content bg-purple-light">
-                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap" ><h3>{{item.title}} </h3></el-row>
+              <el-col :span="24" id="paper_display" @click="jumpToPaperPage(item.id)">
+                <div class="grid-content bg-purple-light" @click="jumpToPaperPage(item.id)">
+                  <el-row id="paper_title" style="line-height:20px;margin-right: 700px;white-space: nowrap"   @click="jumpToPaperPage(item.id)"><h3>{{item.title}} </h3></el-row>
                   <el-row id="paper_abstract" >
                     <div style="text-align: left;line-height:20px;margin-right: 80px; overflow: hidden;
                                                                                           -webkit-line-clamp: 4;
@@ -46,14 +47,6 @@
                     </div>
                   </el-row>
                   <el-row id="paper_info" >
-                    <span>author : {{item.author}} notes :  {{item.num_notes}}</span>
-                    <el-rate
-                      v-model="value"
-                      disabled
-                      show-score
-                      text-color="#ff9900"
-                      score-template="{value}" style="align-items: center">
-                    </el-rate>
                     <el-col>
 <!--                      <el-button @click="jump">Enter the notes</el-button>-->
                     </el-col>
@@ -62,7 +55,7 @@
               </el-col>
             </el-row>
           </div>
-
+          </span>
         </el-col>
 
       </el-row>
@@ -155,6 +148,9 @@ export default {
   name: 'home',
   data () {
     return {
+      catlog: '',
+      keyword: '',
+      loading: false,
       value: 4.4,
       paperlist:
                     [{ title: 'computer science',
@@ -175,15 +171,18 @@ export default {
                       author: 'wang',
                       date: '1101',
                       num_notes: 12 }
-                    ]
+                    ],
+      SearchResultList: []
     }
   },
-  created: function () {
-    // `this` 指向 vm 实例
-    console.log('a is: ' + this.a)
-  },
-
   methods: {
+    jumpToPaperPage (id) {
+      if (id === null) {
+        return
+      }
+      this.$router.push({ path: '/notes', query: { pid: id } })
+    },
+
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },
@@ -206,6 +205,138 @@ export default {
     handleClose (key, keyPath) {
       console.log(key, keyPath)
     }
+  },
+  mounted () {
+    this.SearchResultList = []
+
+    this.catlog = this.$route.query.catlog
+    this.keyword = this.$route.query.keyword
+    this.loading = true
+    const axios = require('axios')
+    axios.post('http://127.0.0.1:5000/paper_search', {
+      catlog: this.$route.query.catlog,
+      keyword: this.$route.query.keyword
+    })
+
+      .then((response) => {
+        if (response.data.state === 'success') {
+          if (this.$route.query.catlog === 'note') {
+            if (response.data.notes_json.length === 0) {
+              this.SearchResultList.push({ 'title': 'Noting found', 'content': '' })
+            }
+
+            for (var index = 0; index < response.data.notes_json.length; index++) {
+              this.SearchResultList.push({ 'id': response.data.notes_json[index].pid, 'title': response.data.notes_json[index].account, 'content': response.data.notes_json[index].note })
+            }
+            console.log('note')
+            console.log(this.SearchResultList)
+
+            this.loading = false
+          } else if ((this.$route.query.catlog === 'paper')) {
+            this.loading = false
+            if (response.data.paper_json.length === 0) {
+              this.SearchResultList.push({ 'title': 'Noting found', 'content': '' })
+              return
+            }
+            this.SearchResultList = response.data.paper_json
+            console.log('paper')
+            console.log(this.SearchResultList)
+            this.loading = false
+          }
+        } else {
+          this.$message.error('search error')
+        }
+      })
+      // eslint-disable-next-line handle-callback-err
+      .catch(function (error) {
+        this.$message.error('network connection is failed!')
+      })
+  },
+  watch: {
+    $route () {
+      if (this.$route) {
+        this.SearchResultList = []
+
+        this.catlog = this.$route.query.catlog
+        this.keyword = this.$route.query.keyword
+        this.loading = true
+        const axios = require('axios')
+        axios.post('http://127.0.0.1:5000/paper_search', {
+          catlog: this.$route.query.catlog,
+          keyword: this.$route.query.keyword
+        })
+
+          .then((response) => {
+            if (response.data.state === 'success') {
+              if (this.$route.query.catlog === 'note') {
+                if (response.data.notes_json.length === 0) {
+                  this.SearchResultList.push({ 'title': 'Noting found', 'content': '' })
+                }
+
+                for (var index = 0; index < response.data.notes_json.length; index++) {
+                  this.SearchResultList.push({ 'title': response.data.notes_json[index].account, 'content': response.data.notes_json[index].note })
+                }
+                console.log('note')
+                console.log(this.SearchResultList)
+
+                this.loading = false
+              } else if ((this.$route.query.catlog === 'paper')) {
+                this.loading = false
+                if (response.data.paper_json.length === 0) {
+                  this.SearchResultList.push({ 'title': 'Noting found', 'content': '' })
+                  return
+                }
+                this.SearchResultList = response.data.paper_json
+                console.log('paper')
+                console.log(this.SearchResultList)
+                this.loading = false
+              }
+            } else {
+              this.$message.error('search error')
+            }
+          })
+        // eslint-disable-next-line handle-callback-err
+          .catch(function (error) {
+            this.$message.error('network connection is failed!')
+          })
+      }
+    }
+  },
+
+  updated () {
+
+    // this.$message.success("updated")
+
+    // this.catlog = this.$route.query.catlog
+    // this.keyword = this.$route.query.keyword
+    // alert('updated')
+    // this.loading = true
+    //
+    // const axios = require('axios')
+    //
+    // axios.post('http://127.0.0.1:5000/paper_search', {
+    //   catlog: this.$route.query.catlog,
+    //   keyword: this.$route.query.keyword
+    // })
+    //
+    //   .then((response) => {
+    //     if (response.data.state === 'success') {
+    //       if (this.$route.query.catlog === 'note') {
+    //         for (var index = 0; index < response.data.notes_json.length; index++) {
+    //           this.SearchResultList.push({ 'title': response.data.notes_json[index].account, 'content': response.data.notes_json[index].note })
+    //         }
+    //         console.log(this.SearchResultList)
+    //
+    //         this.loading = false
+    //       } else {
+    //
+    //       }
+    //     }
+    //   })
+    // // eslint-disable-next-line handle-callback-err
+    //   .catch(function (error) {
+    //     this.$message.error('network connection is failed!')
+    //   })
   }
 }
 </script>

@@ -55,10 +55,10 @@ export default {
             global.account = response.data.account
             this.$store.commit('changeToken', response.data.uid)
             this.$store.commit('changeAccount', response.data.account)
-            alert('welcome to PaperNotes')
+            this.$message.success('welcome to PaperNotes')
             this.$router.push({ path: '/' })
           } else {
-            alert('account or passwrod is wrong')
+            this.$message.error('account or passwrod is wrong')
           }
         })
         // eslint-disable-next-line handle-callback-err

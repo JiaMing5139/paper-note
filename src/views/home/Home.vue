@@ -47,13 +47,6 @@
                     </el-row>
                   <el-row id="paper_info" >
                      <span>author : {{item.author}} notes :  {{item.num_notes}}</span>
-                    <el-rate
-                      v-model="value"
-                      disabled
-                      show-score
-                      text-color="#ff9900"
-                      score-template="{value}" style="align-items: center">
-                    </el-rate>
                     <el-col>
 <!--                      <el-button @click="jump">Enter the notes</el-button>-->
 <!--                      <button v-on:click="say(item.id)">Enter notes</button>-->
