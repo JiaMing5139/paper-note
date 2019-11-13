@@ -103,6 +103,8 @@ export default {
 
     },
     search_jump () {
+      if (this.search_input === null)
+        return
       this.$router.push({ path: '/search_page', query: { catlog: this.value, keyword: this.search_input } })
     }
   },
@@ -118,7 +120,7 @@ export default {
         value: 'note',
         label: 'note'
       }],
-      value: ''
+      value: 'paper'
     }
   }
 }
