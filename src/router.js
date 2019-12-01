@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/home/Home.vue'
+import Profile_page from './views/people/Profile_page.vue'
 import notes from './views/notes'
 
 import catlog_page from './views/home/catlog_page'
@@ -67,6 +68,13 @@ export default new Router({
       name: 'catlog_page',
       component: catlog_page,
       props: true
+    },
+
+    {
+    path: '/Profile_page/:UserName',
+      name: 'Profile_page',
+    component: Profile_page,
+    props: true
     }
 
   ]

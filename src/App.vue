@@ -32,7 +32,7 @@
             style="margin-left: -120%;width: 110%"> >
           </el-input></el-menu-item>
 <!--         admin</router-link></el-menu-item> <el-menu-item index="5"><router-link to="/admin">-->
-          <el-menu-item v-if="this.$store.getters.getToken !== null " index="3" id ="user1"><router-link to="/user_center">{{this.$store.getters.getAccount}}</router-link></el-menu-item>
+          <el-menu-item v-if="this.$store.getters.getToken !== null " index="3" id ="user1"><router-link :to="{name: 'Profile_page', params: {UserName:this.$store.getters.getAccount}}">{{this.$store.getters.getAccount}}</router-link></el-menu-item>
           <div v-else>
             <el-submenu index="4" id ="user">
               <template slot="title">sign in/sign up</template>
@@ -94,7 +94,7 @@
 }
 </style>
 <script>
-import global from './components/common.vue'
+
 export default {
   name: 'home',
 
@@ -103,8 +103,13 @@ export default {
 
     },
     search_jump () {
-      if (this.search_input === null)
+      if (this.search_input === null) {
         return
+      }
+
+      this.$router.push({ path: '/search_page', query: { catlog: this.value, keyword: this.search_input } })
+    },
+    userCenter_jump(){
       this.$router.push({ path: '/search_page', query: { catlog: this.value, keyword: this.search_input } })
     }
   },

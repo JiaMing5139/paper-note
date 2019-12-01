@@ -22,10 +22,13 @@
           <div v-for="(item,index) in noteslist" v-bind="item.id" class="infinite-list-item" >
 <!--            <div class="grid-content bg-purple-light" style="margin-top: 30px">-->
               <el-row >
-                {{index + 1 + '   ' }}
-                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" style="margin-left: 5%"></el-avatar>
-               <span style="margin-left: 5%">{{item.account}}</span> </el-row>
-              <el-row  style="color: #333333;font-size: 20px;margin-left: 8%; margin-top: 2% ;text-align: justify;width: 80%;  " >{{item.note }}</el-row>
+                <router-link :to="{name: 'Profile_page', params: {UserName:item.account}}">
+                  {{index + 1 + '   ' }}
+                  <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" style="margin-left: 5%"></el-avatar>
+                  <span style="margin-left: 5%">{{item.account}}</span>
+                </router-link>
+              </el-row>
+              <el-row  style="color: #333333;font-size: 20px;margin-left: 7%; margin-top: 2% ;text-align: justify;width: 70%;  " >{{item.note }}</el-row>
               <el-row style="margin-left: 18%">
                 <el-button type="text" >like  {{item.thumup}}</el-button >
                 <el-button type="text" style="margin-left: 10%" @click="replyclick(item.ifClickReply,item.id)">reply</el-button>
@@ -46,7 +49,7 @@
                 <el-row  > {{(index + 1) + '-' + (subindex+1)  + '  ' }}
                   <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"  size="mini"></el-avatar>
                   <span style="margin-left: 2%">{{subitem.account}}</span></el-row>
-                <el-row style="font-size: 18px;margin-left: 6%; ">{{subitem.note }}</el-row>
+                <el-row style="font-size: 18px;margin-left: 7%; width: 60%">{{subitem.note }}</el-row>
                 <el-row style="margin-left: 15%">
                   <el-button type="text" >like  {{item.thumup}}</el-button >
                   <el-button disabled type="text" @click="replyclick(item.ifClickReply,item.id)">reply</el-button>
@@ -167,7 +170,6 @@ export default {
     commentComment: function (paraentNoteId, noteContent, index) {
     //  alert(paraentNoteId + noteContent + this.subcomentlist[index])
 
-
       // open the comment comments list
       var newnode2 = this.noteslist[index]
       newnode2['ifViewComment'] = true
@@ -198,6 +200,11 @@ export default {
               this.subcomentlist[index] = []
             }
             this.subcomentlist[index].push(notesdict)
+
+            var node = this.noteslist[index]
+            node['numOfReply'] += 1
+            this.noteslist.splice(index, 1, node)
+            console.log(this.noteslist[index])
           } else if (response.data.state === 'badcomment') {
             this.textareaNotes = ''
             this.$message.error('bad comment')
