@@ -50,7 +50,11 @@
             <el-button style="font-size: 32px" type="text" @click="dialogTableVisible = true">subscribed:{{subscribed_num}}</el-button>
                 <el-dialog title="subscribed" :visible.sync="dialogTableVisible">
                   <el-table :data="subscribed_list">
-<!--                    <el-table-column property="subscriberphoto" label="subscribe" width="150"></el-table-column>-->
+                    <el-table-column property="subscriberphoto" label="subscribe" width="150">
+                      <template   scope="scope">
+                        <img :src="scope.row.subscriberphoto"  min-width="70" height="70" />
+                      </template>
+                    </el-table-column>
                     <el-table-column property="subscriberAccount" label="Account" width="200"></el-table-column>
 
                   </el-table>
@@ -58,10 +62,15 @@
 
           </span>
           <el-divider ></el-divider>
-          <span style="font-size: 32px"> <el-button style="font-size: 32px" type="text" @click="followingTable = true">following:{{following_num}}</el-button>
-                <el-dialog title="subscribed" :visible.sync="followingTable">
+          <span style="font-size: 32px">
+            <el-button style="font-size: 32px" type="text" @click="followingTable = true">following:{{following_num}}</el-button>
+                <el-dialog title="following" :visible.sync="followingTable">
                   <el-table :data="following_list">
-<!--                    <el-table-column property="subscriberphoto" label="subscribe" width="150"></el-table-column>-->
+                    <el-table-column label="subscribe" width="150">
+                      <template   scope="scope">
+                        <img :src="scope.row.subscribedphoto"  min-width="70" height="70" />
+                      </template>
+                    </el-table-column>
                     <el-table-column property="subscribedAccount" label="Account" width="200"></el-table-column>
 
                   </el-table>
