@@ -40,7 +40,7 @@
              <el-row > <el-input  placeholder="please make comments here" v-model="subcomentlistInput[index]" > </el-input></el-row>
              <el-row style="margin-left: 60%">
                <el-button size="mini" type="text"  @click="cancleReply(item.id)">cancle</el-button>
-               <el-button size="mini" type="text"  @click="commentComment(item.id, subcomentlistInput[index], index)" style="margin-left: 10%">comment</el-button>
+               <el-button size="mini" type="text"  @click="commentComment(item.id, subcomentlistInput[index], index,item.uid,item.account)" style="margin-left: 10%">comment</el-button>
              </el-row>
             </el-row>
 
@@ -167,7 +167,7 @@ export default {
           this.$message.error('network connection is failed!')
         })
     },
-    commentComment: function (paraentNoteId, noteContent, index) {
+    commentComment: function (paraentNoteId, noteContent, index, paraentUserID, paraentUserAccount) {
     //  alert(paraentNoteId + noteContent + this.subcomentlist[index])
 
       // open the comment comments list
@@ -186,9 +186,12 @@ export default {
       axios.post('http://127.0.0.1:5000/subnote_add', {
         note: noteContent,
         uid: this.$store.getters.getToken,
+        senderAccount: this.$store.getters.getAccount,
         parentid: paraentNoteId,
         sid: this.curretCus,
-        pid: this.pid
+        pid: this.pid,
+        paraentUserID: paraentUserID,
+        paraentUserAccount: paraentUserAccount
       })
         .then((response) => {
           this.loading_note = false
